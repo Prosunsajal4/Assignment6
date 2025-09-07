@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Green Earth – Plant a Tree</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- DaisyUI (precompiled CSS) -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --brand: #16a34a; }
+    html, body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji'; }
+    .container-edge { max-width: 1200px; margin-inline: auto; padding-inline: 1rem; }
+    .bg-hero {
+      background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=2100&auto=format&fit=crop');
+      background-size: cover; background-position: center;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-base-100">
+  <!-- Navbar -->
+  <header class="shadow-sm bg-base-100 sticky top-0 z-50">
+    <div class="navbar container-edge">
+      <div class="navbar-start gap-2">
+        <a href="#" class="flex items-center gap-2">
+          <span class="inline-grid place-items-center w-9 h-9 rounded-2xl bg-green-100 text-green-700 font-black">GE</span>
+          <span class="text-xl font-extrabold">Green <span class="text-green-600">Earth</span></span>
+        </a>
+      </div>
+
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="#donate">Donate</a></li>
+        </ul>
+      </div>
+
+      <div class="navbar-end gap-2">
+        <button id="open-cart" class="btn btn-ghost">🛒 Cart <span id="cart-count" class="badge badge-sm ml-1">0</span></button>
+        <a class="btn btn-success text-white">Plant a Tree</a>
+        <label class="swap swap-rotate ml-2">
+          <!-- theme toggle -->
+          <input id="theme-toggle" type="checkbox" />
+          <svg class="swap-off fill-current w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7A1,1,0,0,0,7.05,5.64l-.71-.71A1,1,0,1,0,4.93,6.34ZM12,19a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19Zm7-7a1,1,0,0,0,1-1h1a1,1,0,0,0,0-2H20a1,1,0,0,0-1,1A1,1,0,0,0,19,12Zm1.36,5.64a1,1,0,0,0-1.41,0l-.71.71a1,1,0,1,0,1.41,1.41l.71-.71A1,1,0,0,0,20.36,17ZM18.36,4.93a1,1,0,0,0-1.41-1.41l-.71.71A1,1,0,1,0,17.64,6.34ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.5,5.5,0,0,0,12,6.5Z"/></svg>
+          <svg class="swap-on fill-current w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8,8,0,0,1-10.45-10.5,1,1,0,0,0-1.25-1.25A10,10,0,1,0,22,14.05,1,1,0,0,0,21.64,13Z"/></svg>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <section id="home" class="bg-hero">
+    <div class="container-edge py-24 lg:py-36 text-center text-white">
+      <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow">Let’s Make The Planet Greener</h1>
+      <p class="mt-4 text-lg md:text-xl opacity-90">Join our community campaign and plant trees for a cleaner, healthier future.</p>
+      <a href="#catalog" class="btn btn-primary mt-8">Explore Trees</a>
+    </div>
+  </section>
+
+  <!-- About Campaign -->
+  <section id="about" class="container-edge py-16">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-8">About Campaign</h2>
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <img class="rounded-2xl shadow" src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1800&auto=format&fit=crop" alt="Campaign" />
+      <div>
+        <h3 class="text-xl font-bold mb-2">Together we can create impact</h3>
+        <p class="opacity-80">We run community-driven tree planting events across cities and campuses. Every donation helps us plant and maintain more trees—improving air quality, biodiversity, and community well‑being.</p>
+        <ul class="list-disc pl-6 mt-4 space-y-1">
+          <li>Local volunteers & transparent reporting</li>
+          <li>Native species with high survival rate</li>
+          <li>Maintenance & monitoring for a full year</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact -->
+  <section id="impact" class="bg-base-200">
+    <div class="container-edge py-14">
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-8">Our Impact</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="stat bg-base-100 rounded-2xl shadow">
+          <div class="stat-figure text-3xl">🌳</div>
+          <div class="stat-title">Trees Planted</div>
+          <div class="stat-value">25K+</div>
+          <div class="stat-desc">Across 12 cities</div>
+        </div>
+        <div class="stat bg-base-100 rounded-2xl shadow">
+          <div class="stat-figure text-3xl">👥</div>
+          <div class="stat-title">Volunteers</div>
+          <div class="stat-value">8K+</div>
+          <div class="stat-desc">Student led</div>
+        </div>
+        <div class="stat bg-base-100 rounded-2xl shadow">
+          <div class="stat-figure text-3xl">🌎</div>
+          <div class="stat-title">CO₂ Offset</div>
+          <div class="stat-value">1.2Kt</div>
+          <div class="stat-desc">Est. yearly</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog & Categories -->
+  <section id="catalog" class="container-edge py-16">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Left: Categories -->
+      <aside class="lg:w-64 w-full">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xl font-bold">Categories</h2>
+          <button id="reset-categories" class="btn btn-xs">All</button>
+        </div>
+        <div id="category-list" class="flex lg:block gap-2 overflow-auto lg:overflow-visible pb-2"></div>
+      </aside>
+
+      <!-- Right: Grid + Controls -->
+      <div class="flex-1">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold">Trees</h2>
+          <div class="flex items-center gap-2">
+            <input id="search-input" type="text" placeholder="Search plants..." class="input input-bordered input-sm w-40 md:w-60" />
+            <button id="refresh-all" class="btn btn-sm">Refresh</button>
+          </div>
+        </div>
+
+        <!-- Spinner -->
+        <div id="spinner" class="flex items-center justify-center py-10 hidden">
+          <span class="loading loading-spinner loading-lg"></span>
+        </div>
+
+        <!-- Grid -->
+        <div id="card-grid" class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plant a Tree Today (Donation Form) -->
+  <section id="donate" class="bg-base-200">
+    <div class="container-edge py-16">
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-8">Plant a Tree Today</h2>
+      <form class="grid md:grid-cols-3 gap-4 max-w-3xl" onsubmit="event.preventDefault(); document.getElementById('donation-toast').showModal();">
+        <input type="text" required placeholder="Your Name" class="input input-bordered" />
+        <input type="email" required placeholder="Email Address" class="input input-bordered" />
+        <input type="number" min="1" required placeholder="Number of Trees" class="input input-bordered" />
+        <button class="btn btn-success text-white md:col-span-3">Submit & Support</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-base-300">
+    <div class="container-edge py-8 text-sm opacity-80 flex flex-col md:flex-row items-center justify-between gap-3">
+      <p>© <span id="year"></span> Green Earth. All rights reserved.</p>
+      <p>Built with TailwindCSS, DaisyUI & Vanilla JS.</p>
+    </div>
+  </footer>
+
+  <!-- DETAILS MODAL -->
+  <dialog id="details-modal" class="modal">
+    <div class="modal-box max-w-3xl">
+      <form method="dialog"><button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button></form>
+      <div id="details-content" class="space-y-3"></div>
+    </div>
+    <form method="dialog" class="modal-backdrop"><button>close</button></form>
+  </dialog>
+
+  <!-- CART MODAL -->
+  <dialog id="cart-modal" class="modal">
+    <div class="modal-box w-11/12 max-w-2xl">
+      <form method="dialog"><button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button></form>
+      <h3 class="font-bold text-lg mb-4">Your Cart</h3>
+      <ul id="cart-list" class="space-y-2 mb-4"></ul>
+      <div class="flex items-center justify-between">
+        <div class="text-lg font-semibold">Total: $<span id="cart-total">0.00</span></div>
+        <button id="clear-cart" class="btn btn-outline btn-sm">Clear Cart</button>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop"><button>close</button></form>
+  </dialog>
+
+  <!-- TOAST -->
+  <dialog id="donation-toast" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Thank you! 🌱</h3>
+      <p class="py-4">Your support helps us plant more trees.</p>
+      <div class="modal-action"><form method="dialog"><button class="btn">Close</button></form></div>
+    </div>
+  </dialog>
+
+  <script src="./script.js"></script>
+</body>
+</html>
