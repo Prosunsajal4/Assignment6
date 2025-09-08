@@ -30,14 +30,14 @@
       >
         <div class="text-xl text-white font-bold">Green Earth</div>
         <div class="flex gap-4 text-white flex-col md:flex-row text-center">
-          <a href="" class="decoration-none">About</a>
-          <a href="" class="decoration-none">Gallery</a>
-          <a href="" class="decoration-none">Plant a Tree</a>
+          <a href="#about" class="decoration-none">About</a>
+          <a href="#gallery" class="decoration-none">Gallery</a>
+          <a href="#plant-a-tree" class="decoration-none">Plant a Tree</a>
         </div>
         <div>
-          <button class="btn btn-warning rounded-3xl">
+          <a href="#plant-a-tree"><button class="btn btn-warning rounded-3xl">
             <span class="text-green-900">Plant a Tree</span>
-          </button>
+          </button></a>
         </div>
       </nav>
       <!-- banner -->
@@ -51,22 +51,22 @@
           background-size: auto 100%;
         "
       >
-        <div class="max-w-1144px mx-auto px-20 py-20 text-white">
+        <div class="max-w-1144px mx-auto md:px-20 md:py-20 py-10 text-white">
           <h1 class="md:text-5xl text-2xl font-bold mb-6 text-black">
             Plant a Tree, Grow a Future
           </h1>
-          <p class="text-md mb-8 text-black">
+          <p class="md:text-md text-sm text-gray-900 mb-8 text-black">
             Join our mission to plant 1 million trees and make the Earth greener
             for future generations.
           </p>
-          <button class="btn btn-warning rounded-3xl">
+          <a href="#plant-a-tree"><button class="btn btn-warning rounded-3xl">
             <span class="text-green-900">Get Involved</span>
-          </button>
+          </button></a>
         </div>
       </div>
     </header>
     <!-- main content -->
-    <main>
+    <main id="gallery" >
       <div>
         <p class="text-center text-4xl font-bold mt-5">Choose Your Trees</p>
         </div>
@@ -86,12 +86,12 @@
            
   </div>
         </div>
-        <div class="w-full md:col-span-2 cart-container bg-white rounded-sm h-full">
+        <div class="w-full md:col-span-2 cart-container bg-white rounded-sm h-full flex flex-col">
           <h1 class="text-2xl font-bold text-left px-2 my-3">Your Cart</h1>
           
         </div>
       </section>
-      <section class="about-the-campaign mx-auto mb-15">
+      <section class="about-the-campaign mx-auto mb-15" id="about">
         <h1 class="text-center text-4xl font-bold mb-5">About the Campaign</h1>
         <div class="content flex gap-9 w-2/3 mx-auto flex-col md:flex-row">
           <div class="flex-1">
@@ -136,9 +136,9 @@
             </p>
           </div>
         </div>
-        <div class="bg-green-800 mt-10 py-10 w-full"> 
+        <div class="bg-green-800 mt-10 py-10 w-full " id="plant-a-tree"> 
            <div>
-  <h1 class="text-center text-4xl font-bold text-white">Plant a Tree Today</h1>
+  <h1 class="text-center md:text-4xl text-2xl font-bold text-white">Plant a Tree Today</h1>
           </div> 
           <div class="bg-green-700 rounded-2xl w-6/8 md:w-3/8 mx-auto mt-10 flex flex-col gap-3 px-6 py-6">
 
@@ -158,8 +158,8 @@
     </main>
     <!-- footer -->
     <footer class="">
-      <div class="text-lg bg-green-900 text-center py-4 mt-[-20px]">
-  <p class="text-white m-0">© 2025 Green Earth. All Rights Reserved.</p>
+      <div class="bg-green-900 text-center py-4 mt-[-20px]">
+  <p class="text-white m-0 md:text-lg text-sm">© 2025 Green Earth. All Rights Reserved.</p>
 </div>
     </footer>
     <div id="plant-modal-container"></div>

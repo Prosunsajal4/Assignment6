@@ -38,7 +38,8 @@ function displayPlants(plants) {
 
   plants.forEach((plant) => {
     const card = document.createElement("div");
-    card.classList = "bg-white rounded-md p-5 space-y-3 shadow-md";
+    card.classList =
+      "bg-white rounded-md p-5 space-y-3 shadow-md max-h-[440px]";
 
     card.innerHTML = `
       <img src="${plant.image}" class="w-full h-32 object-cover mb-3 rounded-md" alt="">
@@ -46,13 +47,15 @@ function displayPlants(plants) {
       <p class="text-[12px]">${plant.description}</p>
       <div class="flex justify-between items-center">
         <p class="bg-green-100 w-fit px-1 py-1 rounded-xl">${plant.category}</p>
-        <p>$${plant.price}</p>
+        <p>৳${plant.price}</p>
       </div>
-      <button class="btn cart-btn bg-green-900 rounded-3xl w-full mt-1">
+      <button id="cart-btn-${plant.id}" class="btn bg-green-900 rounded-3xl w-full mt-1 cart-btn">
         <span class="text-white">Add To Cart</span>
       </button>
     `;
-
+    card
+      .querySelector(".cart-btn")
+      .addEventListener("click", () => addToCart(plant));
     cardContainer.appendChild(card);
 
     document
@@ -94,3 +97,55 @@ const manageSpinner = (status) => {
     document.querySelector(".card-container").classList.remove("hidden");
   }
 };
+
+let cart = [];
+let totalPrice = 0;
+
+function updateCartUI() {
+  const cartContainer = document.querySelector(".cart-container");
+  cartContainer.innerHTML = `<h1 class="text-2xl font-bold text-left px-2 my-3">Your Cart</h1>`;
+
+  if (cart.length === 0) {
+    cartContainer.innerHTML += `<p class="px-2">Cart is empty</p>`;
+    return;
+  }
+
+  cart.forEach((plant, index) => {
+    const div = document.createElement("div");
+    div.className =
+      "bg-green-50 rounded-md p-2 my-1 flex justify-between items-center mx-4";
+    div.innerHTML = `
+     
+      <div class="flex items-center justify-between gap-8 w-full">
+        
+        <div> 
+        <span>${plant.name}</span><br>
+        <span>৳${plant.price} × 1</span>
+        </div>
+        <div>
+        <button class="text-gray-700 font-bold remove-btn">X</button>
+        </div>
+        
+      </div>
+    `;
+
+    div.querySelector(".remove-btn").addEventListener("click", () => {
+      totalPrice -= plant.price;
+      cart.splice(index, 1);
+      updateCartUI();
+    });
+
+    cartContainer.appendChild(div);
+  });
+
+  const totalDiv = document.createElement("div");
+  totalDiv.className = "flex justify-between font-bold mt-2 p-2 border-t";
+  totalDiv.innerHTML = `<span>Total:</span> <span>৳${totalPrice}</span>`;
+  cartContainer.appendChild(totalDiv);
+}
+
+function addToCart(plant) {
+  cart.push(plant);
+  totalPrice += plant.price;
+  updateCartUI();
+}
