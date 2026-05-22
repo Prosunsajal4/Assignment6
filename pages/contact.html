@@ -507,138 +507,37 @@
     </footer>
 
     <!-- Load main (includes Tailwind CSS) -->
-    <script type="module" src="/src/main.js"></script>
+     <script type="module" src="/src/main.js"></script>
 
-    <!-- Contact JavaScript -->
-    <script>
-      // Donation selection functionality
-      function selectDonation(amount, trees) {
-        document.getElementById('tree-count').value = trees;
-        document.getElementById('total-amount').value = `$${amount}`;
-        document
-          .getElementById('donate-form')
-          .scrollIntoView({ behavior: 'smooth' });
-      }
+     <!-- Show status banner if redirected from Stripe -->
+     <script>
+       (function showStatusFromQuery() {
+         const params = new URLSearchParams(window.location.search);
+         const status = params.get('status');
+         const sessionId = params.get('session_id');
+         const banner = document.getElementById('status-banner');
+         if (!banner) return;
 
-      // Update total amount when tree count changes
-      document
-        .getElementById('tree-count')
-        .addEventListener('change', function () {
-          const treeCount = parseInt(this.value);
-          let amount = 0;
+         if (status === 'success') {
+           banner.innerHTML = `
+             <div class="rounded-lg p-4 bg-green-100 border-2 border-green-200 text-green-800">
+               <strong>Thank you!</strong> Your donation was successful.
+               ${sessionId ? ' Reference: ' + sessionId : ''}
+             </div>`;
+           // Clear query params from URL without reloading
+           if (window.history && window.history.replaceState) {
+             const cleanUrl = window.location.origin + window.location.pathname;
+             window.history.replaceState({}, document.title, cleanUrl);
+           }
+         } else if (status === 'cancel') {
+           banner.innerHTML = `
+             <div class="rounded-lg p-4 bg-yellow-50 border-2 border-yellow-200 text-yellow-800">
+               <strong>Payment cancelled.</strong> You can try again when ready.
+             </div>`;
+         }
+       })();
+     </script>
 
-          switch (treeCount) {
-            case 1:
-              amount = 25;
-              break;
-            case 5:
-              amount = 100;
-              break;
-            case 10:
-              amount = 200;
-              break;
-            case 25:
-              amount = 500;
-              break;
-            case 50:
-              amount = 1000;
-              break;
-            case 100:
-              amount = 2000;
-              break;
-          }
 
-          document.getElementById('total-amount').value =
-            amount > 0 ? `$${amount}` : '';
-        });
-
-      // Form submission -> create Stripe Checkout session
-      document
-        .getElementById('donation-form')
-        .addEventListener('submit', function (e) {
-          e.preventDefault();
-
-          // Simple form validation
-          const requiredFields = this.querySelectorAll(
-            'input[required], select[required]'
-          );
-          let isValid = true;
-
-          requiredFields.forEach((field) => {
-            if (!field.value.trim()) {
-              field.classList.add('border-red-500');
-              isValid = false;
-            } else {
-              field.classList.remove('border-red-500');
-            }
-          });
-
-          if (!isValid) {
-            alert('Please fill in all required fields.');
-            return;
-          }
-
-          // Get amount in cents from total-amount field (e.g. "$25" -> 2500)
-          const totalAmountInput = document.getElementById('total-amount');
-          let amountCents = 0;
-          if (totalAmountInput && totalAmountInput.value) {
-            const numeric =
-              parseFloat(totalAmountInput.value.replace(/[^0-9.]/g, '')) || 0;
-            amountCents = Math.round(numeric * 100);
-          }
-
-          if (!amountCents || amountCents <= 0) {
-            alert('Please select a donation amount.');
-            return;
-          }
-
-          // Create checkout session on server
-          fetch('http://localhost:4242/create-checkout-session', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ amount: amountCents }),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.url) {
-                window.location = data.url;
-              } else {
-                console.error(data);
-                alert('Payment initiation failed.');
-              }
-            })
-            .catch((err) => {
-              console.error(err);
-              alert('Payment initiation failed.');
-            });
-        });
-
-      // Show status banner if redirected from Stripe
-      (function showStatusFromQuery() {
-        const params = new URLSearchParams(window.location.search);
-        const status = params.get('status');
-        const sessionId = params.get('session_id');
-        const banner = document.getElementById('status-banner');
-        if (!banner) return;
-
-        if (status === 'success') {
-          banner.innerHTML = `
-            <div class="rounded-lg p-4 bg-green-100 border-2 border-green-200 text-green-800">
-              <strong>Thank you!</strong> Your donation was successful.
-              ${sessionId ? ' Reference: ' + sessionId : ''}
-            </div>`;
-          // Clear query params from URL without reloading
-          if (window.history && window.history.replaceState) {
-            const cleanUrl = window.location.origin + window.location.pathname;
-            window.history.replaceState({}, document.title, cleanUrl);
-          }
-        } else if (status === 'cancel') {
-          banner.innerHTML = `
-            <div class="rounded-lg p-4 bg-yellow-50 border-2 border-yellow-200 text-yellow-800">
-              <strong>Payment cancelled.</strong> You can try again when ready.
-            </div>`;
-        }
-      })();
-    </script>
   </body>
 </html>

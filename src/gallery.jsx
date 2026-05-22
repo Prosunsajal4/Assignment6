@@ -45,6 +45,7 @@ function GalleryApp() {
   const [plants, setPlants] = useState([]);
   const [loading, setLoading] = useState(false);
   const [catLoading, setCatLoading] = useState(false);
+  const [error, setError] = useState(null);
   const cart = useCart();
   const [showDebug, setShowDebug] = useState(false);
 
@@ -171,46 +172,30 @@ function GalleryApp() {
              </button>
            </div>
 
-        {loading ? (
-          <div className="py-16 text-center">Loading…</div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {plants.length === 0 ? (
-              <div className="col-span-full text-center py-16 text-gray-600">
-                Select a category to browse plants.
-              </div>
-            ) : (
-              plants.map((p) => (
-                <article key={p.id} className="plant-card">
-                  <img src={p.image} alt={p.name} className="plant-image" />
-                  <h3 className="font-bold text-lg text-green-700">{p.name}</h3>
-                  <p className="text-sm text-gray-600 flex-1 mt-2">
-                    {p.description}
-                  </p>
-                  <div className="mt-4 flex items-center justify-between">
-                    <div className="font-semibold">
-                      ${formatPrice(p.price || p.amount || 0)}
-                    </div>
-                    <button
-                      className="btn btn-sm btn-outline"
-                      onClick={() =>
-                        cart.add({
-                          id: p.id,
-                          name: p.name,
-                          price: Number(p.price) || Number(p.amount) || 0,
-                          description: p.description,
-                          quantity: 1,
-                        })
-                      }
-                    >
-                      Add to cart
-                    </button>
-                  </div>
-                </article>
-              ))
-            )}
-          </div>
-        )}
+         {error ? (
+           <div className="py-16 text-center text-red-600">
+             <p>Failed to load plants. Please try again later.</p>
+             <button
+               onClick={() => {
+                 setError(null);
+                 if (selected) {
+                   setLoading(true);
+                   fetchPlantsByCategory(selected)
+                     .then((p) => setPlants(p))
+                     .catch(() => setPlants([]))
+                     .finally(() => setLoading(false));
+                 } else {
+                   fetchAllPlants();
+                 }
+               }}
+               className="btn btn-outline mt-4"
+             >
+               Retry
+             </button>
+           </div>
+         ) : (
+           <div className="py-16 text-center">Loading…</div>
+         )}
       </section>
 
       <aside className="md:col-span-3">
