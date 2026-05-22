@@ -158,31 +158,18 @@ function GalleryApp() {
             {categories.find((x) => x.id === selected)?.category_name ||
               'Gallery'}
           </h1>
-          <div className="flex items-start gap-3">
-            <button
-              key="all"
-              onClick={() => {
-                setSelected('all');
-                fetchAllPlants();
-              }}
-              className={`w-full rounded-lg text-left py-2 px-3 transition-colors ${selected === 'all' ? 'bg-green-700 text-white' : 'bg-gray-100 text-gray-700'}`}
-            >
-              All Trees
-            </button>
-
-            <button
-              onClick={() => setShowDebug((s) => !s)}
-              className="btn btn-ghost btn-sm ml-auto"
-              aria-pressed={showDebug}
-            >
-              {showDebug ? 'Hide categories' : 'Show categories'}
-            </button>
-          </div>
-
-          {showDebug && (
-            <pre className="debug-panel mt-3 p-3 rounded bg-gray-50 text-xs text-gray-700 overflow-auto border border-gray-100">{JSON.stringify(categories, null, 2)}</pre>
-          )
-        </div>
+           <div className="flex items-start gap-3">
+             <button
+               key="all"
+               onClick={() => {
+                 setSelected('all');
+                 fetchAllPlants();
+               }}
+               className={`w-full rounded-lg text-left py-2 px-3 transition-colors ${selected === 'all' ? 'bg-green-700 text-white' : 'bg-gray-100 text-gray-700'}`}
+             >
+               All Trees
+             </button>
+           </div>
 
         {loading ? (
           <div className="py-16 text-center">Loading…</div>
