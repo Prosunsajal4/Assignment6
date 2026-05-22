@@ -1,0 +1,55 @@
+{
+  "name": "green-earth",
+  "version": "1.0.0",
+  "description": "A modern tree planting campaign website",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start-server": "node server.js",
+    "test": "vitest",
+    "lint": "eslint src/ --ext js",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "daisyui": "^4.12.10",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "nodemailer": "^7.0.12",
+    "stripe": "^20.1.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "serverDependencies": {
+    "express": "^4.18.2",
+    "stripe": "^12.13.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "nodemailer": "^6.9.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "@vitejs/plugin-legacy": "^5.4.2",
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.9.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.5",
+    "vitest": "^2.1.9"
+  },
+  "keywords": [
+    "web",
+    "environment",
+    "trees",
+    "planting"
+  ],
+  "author": "Prosunsajal4",
+  "license": "MIT"
+}
