@@ -193,10 +193,11 @@ function GalleryApp() {
                Retry
              </button>
            </div>
-         ) : (
-           <div className="py-16 text-center">Loading…</div>
-         )}
-      </section>
+          ) : (
+            <div className="py-16 text-center">Loading…</div>
+          )}
+        </div>
+       </section>
 
       <aside className="md:col-span-3">
         <div className="bg-white rounded-lg shadow-lg p-4 sticky top-6">
