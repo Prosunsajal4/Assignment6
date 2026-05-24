@@ -34,6 +34,9 @@ class Cart {
   }
 
   updateUI() {
+    // Guard against document being undefined in test/node environments
+    if (typeof document === 'undefined') return;
+
     const cartContainer = document.querySelector('.cart-container');
     if (!cartContainer) return;
 
