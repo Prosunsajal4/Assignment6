@@ -4,7 +4,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Assignment6/',
+  base: '/',
   root: '.',
   build: {
     outDir: 'dist',
