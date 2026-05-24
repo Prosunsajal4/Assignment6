@@ -81,6 +81,30 @@
     @apply bg-gradient-to-r from-gray-900 via-green-800 to-gray-900 text-white shadow-lg;
   }
 
+  /* Responsive improvements */
+  @media (max-width: 768px) {
+    .max-w-1144px {
+      @apply px-3;
+    }
+  }
+
+  /* Mobile optimizations */
+  body {
+    @apply text-base;
+  }
+
+  @media (max-width: 640px) {
+    h1 {
+      @apply text-2xl;
+    }
+    h2 {
+      @apply text-xl;
+    }
+    h3 {
+      @apply text-lg;
+    }
+  }
+
   /* Animated spinner */
   .spinner {
     @apply inline-block w-12 h-12 rounded-full border-4 border-gray-200 border-t-4 border-t-green-600 animate-spin;
