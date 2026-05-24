@@ -2,101 +2,111 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom CSS utilities */
+/* Custom CSS utilities - Modern Professional Design */
 @layer base {
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   }
 
   body {
-    @apply bg-green-earth-50;
+    @apply bg-gray-50;
+    background: linear-gradient(135deg, #f0fdf4 0%, #f0f9ff 100%);
   }
 
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-green-earth-600 hover:bg-green-earth-700 text-white font-medium px-6 py-3 rounded-full transition-all duration-200 hover:scale-[1.05] hover:shadow-md;
+    @apply bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-lg transform;
   }
 
   .btn-warning {
-    @apply bg-yellow-400 hover:bg-yellow-500 text-white font-medium px-6 py-3 rounded-full transition-all duration-200 hover:scale-[1.05] hover:shadow-md;
+    @apply bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-lg;
   }
 
   .btn-outline {
-    @apply border border-green-earth-600 text-green-earth-600 hover:bg-green-earth-50 hover:text-green-earth-700 font-medium px-6 py-3 rounded-full transition-all duration-200;
+    @apply border-2 border-green-600 text-green-600 hover:bg-green-50 hover:text-green-700 font-semibold px-6 py-3 rounded-lg transition-all duration-200;
   }
 
   .btn-ghost {
-    @apply bg-transparent hover:bg-green-earth-50 text-green-earth-600 font-medium px-6 py-3 rounded-full transition-all duration-200;
+    @apply bg-transparent hover:bg-gray-100 text-gray-700 font-medium px-6 py-3 rounded-lg transition-all duration-200;
   }
 
   .card {
-    @apply bg-white rounded-lg shadow-md p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    @apply bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-100;
   }
 
   .input {
-    @apply w-full border border-gray-300 rounded-md px-4 py-2 focus:border-green-earth-500 focus:ring-2 focus:ring-green-earth-200 focus:outline-none transition-all duration-200;
+    @apply w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 focus:border-green-600 focus:ring-2 focus:ring-green-100 focus:outline-none transition-all duration-200 font-medium;
   }
 
   .select {
-    @apply w-full border border-gray-300 rounded-md px-4 py-2 focus:border-green-earth-500 focus:ring-2 focus:ring-green-earth-200 focus:outline-none transition-all duration-200;
+    @apply w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 focus:border-green-600 focus:ring-2 focus:ring-green-100 focus:outline-none transition-all duration-200;
   }
 
   .checkbox {
-    @apply h-4 w-4 text-green-earth-600 focus:border-green-earth-500 focus:ring-2 focus:ring-green-earth-200 rounded transition-all duration-200;
+    @apply h-5 w-5 text-green-600 focus:border-green-600 focus:ring-2 focus:ring-green-100 rounded transition-all duration-200 cursor-pointer;
   }
 
-  /* Plant card refinements for consistent height and polish */
+  /* Plant card refinements */
   .plant-card {
-    @apply bg-white rounded-lg shadow-sm p-4 flex flex-col h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border border-gray-100;
+    @apply bg-white rounded-xl shadow-md p-4 flex flex-col h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-gray-100 overflow-hidden;
   }
 
   .plant-image {
-    @apply w-full h-40 object-cover rounded-md mb-3 transition-transform duration-300;
+    @apply w-full h-40 object-cover rounded-lg mb-3 transition-transform duration-300 bg-gradient-to-br from-green-100 to-emerald-100;
   }
 
   .plant-card:hover .plant-image {
-    @apply scale-105;
+    @apply scale-110;
   }
 
   .navbar {
-    @apply bg-gradient-to-r from-green-earth-700 to-green-earth-900 text-white;
+    @apply bg-gradient-to-r from-gray-900 via-green-800 to-gray-900 text-white shadow-lg;
   }
 
-  /* Simple accessible spinner component */
+  /* Animated spinner */
   .spinner {
     @apply inline-block w-12 h-12 rounded-full border-4 border-gray-200 border-t-4 border-t-green-600 animate-spin;
   }
 
   /* Debug panel */
   .debug-panel {
-    @apply max-h-48 w-full overflow-auto bg-white p-2 border border-gray-100 rounded text-xs;
+    @apply max-h-48 w-full overflow-auto bg-gray-50 p-3 border-2 border-gray-200 rounded-lg text-xs font-mono;
     white-space: pre-wrap;
   }
 
-  /* Hero banner enhancements */
+  /* Hero banner */
   .hero-banner {
-    @apply relative overflow-hidden;
+    @apply relative overflow-hidden bg-gradient-to-r from-green-700 to-emerald-700;
   }
 
   .hero-banner::before {
     content: '';
-    @apply absolute inset-0 bg-black bg-opacity-20;
+    @apply absolute inset-0 bg-black bg-opacity-10;
   }
 
-  /* Footer enhancements */
+  /* Footer link styling */
   .footer-link {
-    @apply text-green-200 hover:text-white transition-colors duration-200;
+    @apply text-gray-400 hover:text-white transition-colors duration-200 font-medium;
   }
 
   /* Form validation */
   .input-error {
     @apply border-red-500 focus:border-red-500 focus:ring-red-200;
+  }
+
+  /* Modern heading styles */
+  .heading-gradient {
+    @apply bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent;
   }
 
   .input-success {
@@ -111,11 +121,12 @@
   .heading-responsive {
     @apply text-2xl md:text-3xl lg:text-4xl font-bold;
   }
+}
 
+@layer utilities {
   /* Accessibility enhancements */
   :focus-visible {
-    @outline-none;
-    @apply ring-2 ring-green-earth-500 ring-offset-2;
+    @apply ring-2 ring-green-600 ring-offset-2;
   }
 
   /* Disable animations for users who prefer reduced motion */

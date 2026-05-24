@@ -68,3 +68,5 @@ temp/
 
 # Stripe CLI local state
 .stripe/
+.vercel
+.env*.local
