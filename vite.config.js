@@ -8,12 +8,27 @@ export default defineConfig({
   root: '.',
   build: {
     outDir: 'dist',
+    minify: 'terser',
+    sourcemap: false,
+    reportCompressedSize: true,
+    chunkSizeWarningLimit: 1000,
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
         about: resolve(__dirname, 'pages/about.html'),
         gallery: resolve(__dirname, 'pages/gallery.html'),
         contact: resolve(__dirname, 'pages/contact.html'),
+      },
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom'],
+        },
       },
     },
   },
