@@ -2,6 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.8), 0 0 30px rgba(16, 185, 129, 0.6);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 /* Custom CSS utilities - Modern Professional Design */
 @layer base {
   html {
@@ -14,6 +124,7 @@
   body {
     @apply bg-gray-50;
     background: linear-gradient(135deg, #f0fdf4 0%, #f0f9ff 100%);
+    animation: fadeIn 0.8s ease-in-out;
   }
 
   /* Smooth scrolling */
@@ -28,29 +139,48 @@
   h5,
   h6 {
     @apply font-bold;
+    animation: slideInUp 0.6s ease-out;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-lg transform;
+    @apply bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl transform active:scale-95;
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+    animation: slideInUp 0.6s ease-out;
+  }
+
+  .btn-primary:hover {
+    animation: pulse-glow 2s ease-in-out infinite;
   }
 
   .btn-warning {
-    @apply bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-lg;
+    @apply bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    animation: slideInUp 0.6s ease-out;
   }
 
   .btn-outline {
-    @apply border-2 border-green-600 text-green-600 hover:bg-green-50 hover:text-green-700 font-semibold px-6 py-3 rounded-lg transition-all duration-200;
+    @apply border-2 border-green-600 text-green-600 hover:bg-green-50 hover:text-green-700 font-semibold px-6 py-3 rounded-lg transition-all duration-300 active:scale-95;
+    animation: slideInUp 0.6s ease-out;
   }
 
   .btn-ghost {
-    @apply bg-transparent hover:bg-gray-100 text-gray-700 font-medium px-6 py-3 rounded-lg transition-all duration-200;
+    @apply bg-transparent hover:bg-gray-100 text-gray-700 font-medium px-6 py-3 rounded-lg transition-all duration-300 active:scale-95;
+    animation: slideInUp 0.6s ease-out;
   }
 
   .card {
-    @apply bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-100;
+    @apply bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-gray-100;
+    animation: slideInUp 0.6s ease-out backwards;
   }
+
+  .card:nth-child(1) { animation-delay: 0.1s; }
+  .card:nth-child(2) { animation-delay: 0.2s; }
+  .card:nth-child(3) { animation-delay: 0.3s; }
+  .card:nth-child(4) { animation-delay: 0.4s; }
+  .card:nth-child(5) { animation-delay: 0.5s; }
+  .card:nth-child(6) { animation-delay: 0.6s; }
 
   .input {
     @apply w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 focus:border-green-600 focus:ring-2 focus:ring-green-100 focus:outline-none transition-all duration-200 font-medium;
@@ -64,22 +194,138 @@
     @apply h-5 w-5 text-green-600 focus:border-green-600 focus:ring-2 focus:ring-green-100 rounded transition-all duration-200 cursor-pointer;
   }
 
-  /* Plant card refinements */
+  /* Plant card refinements with enhanced animations */
   .plant-card {
-    @apply bg-white rounded-xl shadow-md p-4 flex flex-col h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-gray-100 overflow-hidden;
+    @apply bg-white rounded-xl shadow-md p-4 flex flex-col h-full transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl border border-gray-100 overflow-hidden;
+    animation: slideInUp 0.6s ease-out backwards;
   }
 
+  .plant-card:nth-child(1) { animation-delay: 0.1s; }
+  .plant-card:nth-child(2) { animation-delay: 0.2s; }
+  .plant-card:nth-child(3) { animation-delay: 0.3s; }
+  .plant-card:nth-child(4) { animation-delay: 0.4s; }
+  .plant-card:nth-child(5) { animation-delay: 0.5s; }
+  .plant-card:nth-child(6) { animation-delay: 0.6s; }
+  .plant-card:nth-child(7) { animation-delay: 0.7s; }
+  .plant-card:nth-child(8) { animation-delay: 0.8s; }
+  .plant-card:nth-child(9) { animation-delay: 0.9s; }
+
   .plant-image {
-    @apply w-full h-40 object-cover rounded-lg mb-3 transition-transform duration-300 bg-gradient-to-br from-green-100 to-emerald-100;
+    @apply w-full h-40 object-cover rounded-lg mb-3 transition-transform duration-500 bg-gradient-to-br from-green-100 to-emerald-100;
   }
 
   .plant-card:hover .plant-image {
-    @apply scale-110;
+    @apply scale-125;
+    filter: brightness(1.1);
   }
 
   .navbar {
     @apply bg-gradient-to-r from-gray-900 via-green-800 to-gray-900 text-white shadow-lg;
+    background-size: 200% 200%;
+    animation: slideInDown 0.6s ease-out;
   }
+
+  /* Hero banner with animations */
+  .hero-banner {
+    @apply relative overflow-hidden bg-gradient-to-r from-green-700 to-emerald-700;
+    background-size: 200% 200%;
+    animation: gradient-shift 6s ease infinite, slideInUp 0.8s ease-out;
+  }
+
+  .hero-banner::before {
+    content: '';
+    @apply absolute inset-0 bg-black bg-opacity-10;
+    animation: fadeIn 1s ease-out;
+  }
+
+  /* Footer link styling with animations */
+  .footer-link {
+    @apply text-gray-400 hover:text-white transition-all duration-300 font-medium;
+  }
+
+  .footer-link:hover {
+    animation: slideInRight 0.3s ease-out;
+  }
+
+  /* Form validation */
+  .input-error {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-200;
+    animation: slideInLeft 0.3s ease-out;
+  }
+
+  /* Modern heading styles */
+  .heading-gradient {
+    @apply bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent;
+  }
+
+  .input-success {
+    @apply border-green-500 focus:border-green-500 focus:ring-green-200;
+    animation: slideInLeft 0.3s ease-out;
+  }
+
+  /* Responsive typography */
+  .text-responsive {
+    @apply text-base md:text-lg lg:text-xl;
+  }
+
+  .heading-responsive {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold;
+  }
+
+  /* Animated spinner */
+  .spinner {
+    @apply inline-block w-12 h-12 rounded-full border-4 border-gray-200 border-t-4 border-t-green-600 animate-spin;
+  }
+
+  /* Debug panel */
+  .debug-panel {
+    @apply max-h-48 w-full overflow-auto bg-gray-50 p-3 border-2 border-gray-200 rounded-lg text-xs font-mono;
+    white-space: pre-wrap;
+  }
+
+  /* Enhanced animations */
+  .fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .slide-in-up {
+    animation: slideInUp 0.6s ease-out forwards;
+  }
+
+  .slide-in-down {
+    animation: slideInDown 0.6s ease-out forwards;
+  }
+
+  .slide-in-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+  }
+
+  .slide-in-right {
+    animation: slideInRight 0.6s ease-out forwards;
+  }
+
+  .bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Staggered animation helper classes */
+  .animate-delay-100 { animation-delay: 0.1s; }
+  .animate-delay-200 { animation-delay: 0.2s; }
+  .animate-delay-300 { animation-delay: 0.3s; }
+  .animate-delay-400 { animation-delay: 0.4s; }
+  .animate-delay-500 { animation-delay: 0.5s; }
+  .animate-delay-600 { animation-delay: 0.6s; }
+  .animate-delay-700 { animation-delay: 0.7s; }
+  .animate-delay-800 { animation-delay: 0.8s; }
+  .animate-delay-900 { animation-delay: 0.9s; }
 
   /* Responsive improvements */
   @media (max-width: 768px) {
@@ -103,55 +349,6 @@
     h3 {
       @apply text-lg;
     }
-  }
-
-  /* Animated spinner */
-  .spinner {
-    @apply inline-block w-12 h-12 rounded-full border-4 border-gray-200 border-t-4 border-t-green-600 animate-spin;
-  }
-
-  /* Debug panel */
-  .debug-panel {
-    @apply max-h-48 w-full overflow-auto bg-gray-50 p-3 border-2 border-gray-200 rounded-lg text-xs font-mono;
-    white-space: pre-wrap;
-  }
-
-  /* Hero banner */
-  .hero-banner {
-    @apply relative overflow-hidden bg-gradient-to-r from-green-700 to-emerald-700;
-  }
-
-  .hero-banner::before {
-    content: '';
-    @apply absolute inset-0 bg-black bg-opacity-10;
-  }
-
-  /* Footer link styling */
-  .footer-link {
-    @apply text-gray-400 hover:text-white transition-colors duration-200 font-medium;
-  }
-
-  /* Form validation */
-  .input-error {
-    @apply border-red-500 focus:border-red-500 focus:ring-red-200;
-  }
-
-  /* Modern heading styles */
-  .heading-gradient {
-    @apply bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent;
-  }
-
-  .input-success {
-    @apply border-green-500 focus:border-green-500 focus:ring-green-200;
-  }
-
-  /* Responsive typography */
-  .text-responsive {
-    @apply text-base md:text-lg lg:text-xl;
-  }
-
-  .heading-responsive {
-    @apply text-2xl md:text-3xl lg:text-4xl font-bold;
   }
 }
 
