@@ -24,6 +24,7 @@ export default defineConfig({
         about: resolve(__dirname, 'pages/about.html'),
         gallery: resolve(__dirname, 'pages/gallery.html'),
         contact: resolve(__dirname, 'pages/contact.html'),
+        developer: resolve(__dirname, 'pages/developer.html'),
       },
       output: {
         manualChunks: (id) => {
