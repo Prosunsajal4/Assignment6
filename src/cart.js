@@ -1,16 +1,33 @@
 // Cart management
+/**
+ * Cart class for managing plant purchases
+ * Handles adding/removing items, calculating totals, and UI updates
+ */
 class Cart {
+  /**
+   * Initialize an empty cart
+   */
   constructor() {
     this.items = [];
     this.totalPrice = 0;
   }
 
+  /**
+   * Add a plant item to the cart
+   * @param {Object} plant - Plant object with id, name, price, description
+   * @returns {void}
+   */
   addItem(plant) {
     this.items.push(plant);
     this.totalPrice += plant.price;
     this.updateUI();
   }
 
+  /**
+   * Remove an item from the cart by index
+   * @param {number} index - Index of the item to remove
+   * @returns {void}
+   */
   removeItem(index) {
     if (index >= 0 && index < this.items.length) {
       this.totalPrice -= this.items[index].price;
@@ -19,20 +36,38 @@ class Cart {
     }
   }
 
+  /**
+   * Get all items currently in the cart
+   * @returns {Array} Array of plant items
+   */
   getItems() {
     return this.items;
   }
 
+  /**
+   * Get the total price of all items in the cart
+   * @returns {number} Total price in dollars
+   */
   getTotalPrice() {
     return this.totalPrice;
   }
 
+  /**
+   * Clear all items from the cart
+   * @returns {void}
+   */
   clear() {
     this.items = [];
     this.totalPrice = 0;
     this.updateUI();
   }
 
+  /**
+   * Update the DOM to reflect current cart state
+   * Renders cart items, total price, and action buttons
+   * Guards against execution in non-browser environments
+   * @returns {void}
+   */
   updateUI() {
     // Guard against document being undefined in test/node environments
     if (typeof document === 'undefined') return;
