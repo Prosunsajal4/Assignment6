@@ -26,8 +26,13 @@ export default defineConfig({
         contact: resolve(__dirname, 'pages/contact.html'),
       },
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
+        manualChunks: (id) => {
+          if (id.includes('node_modules/react')) {
+            return 'react-vendor';
+          }
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         },
       },
     },
