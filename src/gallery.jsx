@@ -172,7 +172,9 @@ function GalleryApp() {
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
       <aside className="md:col-span-2">
         <div className="bg-white rounded-xl shadow-lg p-6 sticky top-6 border border-gray-100">
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">Categories</h2>
+          <h2 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
+            Categories
+          </h2>
           <div className="flex flex-col gap-2">
             {catLoading ? (
               <div className="flex justify-center py-8">
@@ -219,7 +221,9 @@ function GalleryApp() {
           {error ? (
             <div className="py-16 text-center">
               <div className="inline-block bg-red-50 border-2 border-red-200 rounded-lg p-6">
-                <p className="text-red-600 font-semibold mb-4">⚠️ Failed to load plants</p>
+                <p className="text-red-600 font-semibold mb-4">
+                  ⚠️ Failed to load plants
+                </p>
                 <button
                   onClick={() => {
                     setError(null);
@@ -243,12 +247,16 @@ function GalleryApp() {
             <div className="py-16 text-center">
               <div className="inline-block">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
-                <p className="mt-4 text-gray-600 font-medium">Loading amazing plants...</p>
+                <p className="mt-4 text-gray-600 font-medium">
+                  Loading amazing plants...
+                </p>
               </div>
             </div>
           ) : plants.length === 0 ? (
             <div className="py-16 text-center">
-              <p className="text-gray-500 text-lg">No plants found in this category.</p>
+              <p className="text-gray-500 text-lg">
+                No plants found in this category.
+              </p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -273,7 +281,8 @@ function GalleryApp() {
                       {plant.name}
                     </h3>
                     <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-                      {plant.description || 'A beautiful plant for your garden.'}
+                      {plant.description ||
+                        'A beautiful plant for your garden.'}
                     </p>
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-2xl font-bold text-green-600">
@@ -297,17 +306,22 @@ function GalleryApp() {
             </div>
           )}
         </div>
-       </section>
+      </section>
 
       <aside className="md:col-span-3">
         <div className="bg-white rounded-xl shadow-lg p-6 sticky top-6 border border-gray-100">
-          <h3 className="font-bold text-xl bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">🛒 Your Cart</h3>
+          <h3 className="font-bold text-xl bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
+            🛒 Your Cart
+          </h3>
           {cart.items.length === 0 ? (
             <p className="text-gray-500 text-center py-8">Your cart is empty</p>
           ) : (
             <div className="space-y-3">
               {cart.items.map((it, idx) => (
-                <div key={idx} className="flex justify-between items-start bg-gray-50 p-3 rounded-lg border border-gray-200">
+                <div
+                  key={idx}
+                  className="flex justify-between items-start bg-gray-50 p-3 rounded-lg border border-gray-200"
+                >
                   <div>
                     <div className="font-semibold text-gray-800">{it.name}</div>
                     <div className="text-sm text-gray-600">
@@ -325,8 +339,10 @@ function GalleryApp() {
 
               <div className="border-t-2 border-gray-200 pt-4 mt-4">
                 <div className="flex justify-between font-bold text-lg mb-4 text-gray-800">
-                  <span>Total</span> 
-                  <span className="text-green-600">${cart.total().toFixed(2)}</span>
+                  <span>Total</span>
+                  <span className="text-green-600">
+                    ${cart.total().toFixed(2)}
+                  </span>
                 </div>
                 <button
                   className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-3 px-4 rounded-lg transition-all transform hover:scale-105 shadow-md hover:shadow-lg mb-2"
@@ -346,7 +362,9 @@ function GalleryApp() {
         </div>
 
         <div className="mt-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
-          <h3 className="font-bold text-lg text-green-700 mb-3">🌱 Why Plant Trees?</h3>
+          <h3 className="font-bold text-lg text-green-700 mb-3">
+            🌱 Why Plant Trees?
+          </h3>
           <ul className="text-sm text-gray-700 space-y-2 font-medium">
             <li>🌍 Absorbs CO₂ from the atmosphere</li>
             <li>🦅 Provides habitat for wildlife</li>

@@ -82,6 +82,7 @@ Before submitting a pull request:
 - Follow the conventional commits format
 
 Example commit message:
+
 ```
 fix: prevent cart items from being duplicated on checkout
 
@@ -102,20 +103,24 @@ fix: prevent cart items from being duplicated on checkout
 
 ```markdown
 ## Description
+
 Brief description of the changes
 
 ## Type of Change
+
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Documentation update
 - [ ] Performance improvement
 
 ## Testing
+
 - [ ] Unit tests added/updated
 - [ ] Manual testing completed
 - [ ] No breaking changes
 
 ## Related Issues
+
 Fixes #123
 ```
 

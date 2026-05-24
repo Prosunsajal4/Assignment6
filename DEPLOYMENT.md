@@ -3,6 +3,7 @@
 ## Pre-Deployment Checklist
 
 ### Code Quality
+
 - [ ] All tests pass: `npm test`
 - [ ] No ESLint errors: `npm run lint`
 - [ ] Code formatted: `npm run format`
@@ -10,6 +11,7 @@
 - [ ] No unused imports or variables
 
 ### Build Verification
+
 - [ ] Production build succeeds: `npm run build`
 - [ ] dist/ directory created with all files
 - [ ] File sizes reasonable
@@ -17,6 +19,7 @@
 - [ ] Production preview works: `npm run preview`
 
 ### Security
+
 - [ ] No sensitive data in code
 - [ ] Environment variables in .env.example (not .env)
 - [ ] No hardcoded API keys
@@ -25,6 +28,7 @@
 - [ ] CSP headers configured
 
 ### Testing
+
 - [ ] Unit tests passing
 - [ ] Manual testing completed
 - [ ] Cross-browser testing done
@@ -33,6 +37,7 @@
 - [ ] Payment flow tested (use Stripe test cards)
 
 ### Documentation
+
 - [ ] README.md up to date
 - [ ] API documentation complete
 - [ ] Environment variables documented
