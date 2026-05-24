@@ -51,15 +51,26 @@ function GalleryApp() {
 
   useEffect(() => {
     setCatLoading(true);
+    setError(null);
     fetchCategories()
-      .then(setCategories)
-      .catch(() => setCategories([]))
+      .then((cats) => {
+        if (!cats || cats.length === 0) {
+          setError('No categories available');
+        }
+        setCategories(cats);
+      })
+      .catch((err) => {
+        console.error('Error loading categories:', err);
+        setError('Failed to load categories');
+        setCategories([]);
+      })
       .finally(() => setCatLoading(false));
   }, []);
 
   // Fetch all plants across categories (de-duplicated)
   async function fetchAllPlants() {
     setLoading(true);
+    setError(null);
     try {
       const results = await Promise.all(
         categories.map((c) => fetchPlantsByCategory(c.id))
@@ -71,9 +82,13 @@ function GalleryApp() {
         if (p && p.id) map.set(p.id, p);
       });
       const deduped = Array.from(map.values());
+      if (deduped.length === 0) {
+        setError('No plants found');
+      }
       setPlants(deduped);
     } catch (e) {
       console.error('Failed to fetch all plants', e);
+      setError('Failed to load plants');
       setPlants([]);
     } finally {
       setLoading(false);
@@ -82,9 +97,19 @@ function GalleryApp() {
   useEffect(() => {
     if (!selected) return;
     setLoading(true);
+    setError(null);
     fetchPlantsByCategory(selected)
-      .then((p) => setPlants(p))
-      .catch(() => setPlants([]))
+      .then((p) => {
+        if (!p || p.length === 0) {
+          setError('No plants in this category');
+        }
+        setPlants(p || []);
+      })
+      .catch((err) => {
+        console.error('Error loading plants:', err);
+        setError('Failed to load plants');
+        setPlants([]);
+      })
       .finally(() => setLoading(false));
   }, [selected]);
 
@@ -94,13 +119,17 @@ function GalleryApp() {
   }, [categories]);
 
   async function handleCheckout() {
-    if (cart.items.length === 0) return alert('Cart is empty');
+    if (cart.items.length === 0) {
+      alert('Cart is empty');
+      return;
+    }
+
     const payloadItems = cart.items.map((it) => ({
-      name: it.name,
+      name: it.name || 'Plant',
       description: it.description || '',
-      unit_amount: Math.round(Number(it.price) * 100),
-      quantity: it.quantity || 1,
-      currency: it.currency || 'usd',
+      unit_amount: Math.round(Math.max(0, Number(it.price) || 0) * 100),
+      quantity: Math.max(1, it.quantity || 1),
+      currency: (it.currency || 'usd').toLowerCase(),
     }));
 
     try {
@@ -110,17 +139,32 @@ function GalleryApp() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ items: payloadItems }),
       });
+
+      if (!res.ok) {
+        throw new Error(`Server error: ${res.status}`);
+      }
+
       const text = await res.text();
-      const data = JSON.parse(text || '{}');
+      if (!text) {
+        throw new Error('Empty response from server');
+      }
+
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (parseErr) {
+        console.error('Invalid JSON response:', text);
+        throw new Error('Invalid server response');
+      }
+
       if (data && data.url) {
         window.location.href = data.url;
       } else {
-        alert('Checkout failed');
-        console.error('Checkout failed', data, text);
+        throw new Error('No checkout URL provided');
       }
     } catch (err) {
-      console.error(err);
-      alert('Checkout failed (network)');
+      console.error('Checkout error:', err);
+      alert(`Checkout failed: ${err.message || 'Unknown error'}`);
     }
   }
 
