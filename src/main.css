@@ -1362,6 +1362,92 @@
     @apply ring-2 ring-green-600 ring-offset-2;
   }
 
+  /* Backdrop and filter utilities */
+  .backdrop-blur {
+    @apply backdrop-blur;
+  }
+
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+  }
+
+  .backdrop-blur-md {
+    backdrop-filter: blur(8px);
+  }
+
+  .backdrop-blur-lg {
+    backdrop-filter: blur(16px);
+  }
+
+  .backdrop-blur-xl {
+    backdrop-filter: blur(24px);
+  }
+
+  .backdrop-brightness {
+    @apply backdrop-brightness-100;
+  }
+
+  .backdrop-brightness-up {
+    @apply backdrop-brightness-110;
+  }
+
+  .backdrop-brightness-down {
+    @apply backdrop-brightness-90;
+  }
+
+  .backdrop-contrast {
+    @apply backdrop-contrast-100;
+  }
+
+  .backdrop-contrast-up {
+    @apply backdrop-contrast-125;
+  }
+
+  .backdrop-saturate {
+    @apply backdrop-saturate-100;
+  }
+
+  .backdrop-saturate-up {
+    @apply backdrop-saturate-150;
+  }
+
+  /* Filter utilities */
+  .filter-grayscale {
+    filter: grayscale(100%);
+  }
+
+  .filter-sepia {
+    filter: sepia(100%);
+  }
+
+  .filter-invert {
+    filter: invert(100%);
+  }
+
+  .filter-hue-rotate {
+    filter: hue-rotate(90deg);
+  }
+
+  .filter-brightness {
+    filter: brightness(110%);
+  }
+
+  .filter-contrast {
+    filter: contrast(125%);
+  }
+
+  .filter-saturate {
+    filter: saturate(150%);
+  }
+
+  .filter-blur {
+    filter: blur(4px);
+  }
+
+  .filter-drop-shadow {
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  }
+
   .plant-image {
     @apply w-full h-40 object-cover rounded-lg mb-3 transition-transform duration-500 bg-gradient-to-br from-green-100 to-emerald-100;
   }
