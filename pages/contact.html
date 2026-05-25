@@ -31,18 +31,18 @@
       <nav
         role="navigation"
         aria-label="Main navigation"
-        class="navbar bg-gradient-to-r from-green-700 to-green-900 text-white shadow-lg sticky top-0 z-50"
+        class="navbar glass-dark text-white shadow-2xl sticky top-0 z-50 border-b border-white/10"
       >
         <div class="max-w-7xl mx-auto px-4 md:px-8 py-4 w-full flex justify-between items-center">
           <!-- Logo -->
           <div class="text-2xl font-bold">
-            <a href="/" class="hover:text-green-200 transition-colors">🌱 Green Earth</a>
+            <a href="/" class="hover:text-green-300 transition-all duration-300 text-gradient micro-bounce">🌱 Green Earth</a>
           </div>
 
           <!-- Hamburger Menu Button (Mobile) -->
           <button
             id="mobile-menu-btn"
-            class="md:hidden text-white focus:outline-none transition-transform"
+            class="md:hidden text-white focus:outline-none transition-transform hover:scale-110 duration-300"
             onclick="toggleMobileMenu()"
           >
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,14 +52,14 @@
 
           <!-- Desktop Navigation -->
           <div class="hidden md:flex items-center gap-8">
-            <a href="/" class="hover:text-green-200 transition-colors font-medium">Home</a>
-            <a href="/pages/about.html" class="hover:text-green-200 transition-colors font-medium">About</a>
-            <a href="/pages/gallery.html" class="hover:text-green-200 transition-colors font-medium">Gallery</a>
-            <a href="/pages/developer.html" class="hover:text-green-200 transition-colors font-medium">Developer</a>
-            <a href="/pages/contact.html" class="hover:text-green-200 transition-colors font-medium">Contact</a>
+            <a href="/" class="navbar-link">Home</a>
+            <a href="/pages/about.html" class="navbar-link">About</a>
+            <a href="/pages/gallery.html" class="navbar-link">Gallery</a>
+            <a href="/pages/developer.html" class="navbar-link">Developer</a>
+            <a href="/pages/contact.html" class="navbar-link">Contact</a>
             <a href="#donate-form">
-              <button class="btn btn-warning rounded-full px-6 py-2 hover:scale-105 transition-transform">
-                <span class="text-green-900 font-semibold">Plant a Tree</span>
+              <button class="btn btn-warning rounded-full px-6 py-2 hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
+                <span class="text-green-900 font-semibold">🌿 Plant a Tree</span>
               </button>
             </a>
           </div>
@@ -68,16 +68,16 @@
         <!-- Mobile Navigation Menu -->
         <div
           id="mobile-menu"
-          class="hidden md:hidden bg-green-800 border-t border-green-600 px-4 py-4 space-y-3"
+          class="hidden md:hidden glass-dark border-t border-green-400/20 px-4 py-4 space-y-3"
         >
-          <a href="/" class="block hover:text-green-200 transition-colors font-medium py-2">Home</a>
-          <a href="/pages/about.html" class="block hover:text-green-200 transition-colors font-medium py-2">About</a>
-          <a href="/pages/gallery.html" class="block hover:text-green-200 transition-colors font-medium py-2">Gallery</a>
-          <a href="/pages/developer.html" class="block hover:text-green-200 transition-colors font-medium py-2">Developer</a>
-          <a href="/pages/contact.html" class="block hover:text-green-200 transition-colors font-medium py-2">Contact</a>
+          <a href="/" class="block hover:text-green-300 transition-colors font-medium py-2">Home</a>
+          <a href="/pages/about.html" class="block hover:text-green-300 transition-colors font-medium py-2">About</a>
+          <a href="/pages/gallery.html" class="block hover:text-green-300 transition-colors font-medium py-2">Gallery</a>
+          <a href="/pages/developer.html" class="block hover:text-green-300 transition-colors font-medium py-2">Developer</a>
+          <a href="/pages/contact.html" class="block hover:text-green-300 transition-colors font-medium py-2">Contact</a>
           <a href="#donate-form" class="block">
             <button class="w-full btn btn-warning rounded-full py-2 hover:scale-105 transition-transform">
-              <span class="text-green-900 font-semibold">Plant a Tree</span>
+              <span class="text-green-900 font-semibold">🌿 Plant a Tree</span>
             </button>
           </a>
         </div>
