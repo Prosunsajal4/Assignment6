@@ -1178,6 +1178,96 @@
     @apply aspect-video;
   }
 
+  /* Opacity and visibility utilities */
+  .opacity-0 {
+    @apply opacity-0;
+  }
+
+  .opacity-10 {
+    @apply opacity-10;
+  }
+
+  .opacity-20 {
+    @apply opacity-20;
+  }
+
+  .opacity-30 {
+    @apply opacity-30;
+  }
+
+  .opacity-40 {
+    @apply opacity-40;
+  }
+
+  .opacity-50 {
+    @apply opacity-50;
+  }
+
+  .opacity-60 {
+    @apply opacity-60;
+  }
+
+  .opacity-70 {
+    @apply opacity-70;
+  }
+
+  .opacity-80 {
+    @apply opacity-80;
+  }
+
+  .opacity-90 {
+    @apply opacity-90;
+  }
+
+  .opacity-100 {
+    @apply opacity-100;
+  }
+
+  .transition-fast {
+    @apply transition duration-150;
+  }
+
+  .transition-base {
+    @apply transition duration-300;
+  }
+
+  .transition-slow {
+    @apply transition duration-500;
+  }
+
+  .transition-slower {
+    @apply transition duration-700;
+  }
+
+  .transition-slowest {
+    @apply transition duration-1000;
+  }
+
+  /* Transform utilities */
+  .translate-center {
+    @apply -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .scale-sm {
+    @apply scale-95;
+  }
+
+  .scale-lg {
+    @apply scale-105;
+  }
+
+  .scale-xl {
+    @apply scale-110;
+  }
+
+  .skew-x {
+    @apply skew-x-3;
+  }
+
+  .skew-y {
+    @apply skew-y-3;
+  }
+
   .plant-image {
     @apply w-full h-40 object-cover rounded-lg mb-3 transition-transform duration-500 bg-gradient-to-br from-green-100 to-emerald-100;
   }
