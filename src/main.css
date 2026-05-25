@@ -1547,6 +1547,58 @@
     @apply bg-gradient-to-r from-gray-900 via-green-800 to-gray-900 text-white shadow-lg;
     background-size: 200% 200%;
     animation: slideInDown 0.6s ease-out;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 2px solid rgba(34, 197, 94, 0.2);
+  }
+
+  .navbar::after {
+    content: '';
+    @apply absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-green-400 to-transparent;
+    opacity: 0.3;
+  }
+
+  .navbar-link {
+    @apply relative text-white font-medium transition-all duration-300 hover:text-green-300;
+  }
+
+  .navbar-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-green-400 to-emerald-400 transition-all duration-300;
+  }
+
+  .navbar-link:hover::after {
+    @apply w-full;
+  }
+
+  .navbar-brand {
+    @apply text-2xl font-bold bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent;
+    animation: slideInLeft 0.6s ease-out;
+  }
+
+  .navbar-brand:hover {
+    animation: textGlow 0.6s ease-out;
+  }
+
+  .navbar-toggle {
+    @apply relative inline-flex flex-col justify-center items-center w-8 h-8 transition-all duration-300;
+  }
+
+  .navbar-toggle:hover {
+    @apply scale-110;
+  }
+
+  .navbar-menu {
+    @apply overflow-hidden transition-all duration-300;
+  }
+
+  .navbar-menu.active {
+    @apply max-h-screen;
+  }
+
+  .navbar-menu.inactive {
+    @apply max-h-0;
   }
 
   /* Hero banner with animations */
