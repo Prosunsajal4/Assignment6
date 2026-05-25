@@ -1268,6 +1268,100 @@
     @apply skew-y-3;
   }
 
+  /* Interaction and cursor utilities */
+  .cursor-pointer {
+    @apply cursor-pointer;
+  }
+
+  .cursor-not-allowed {
+    @apply cursor-not-allowed;
+  }
+
+  .cursor-default {
+    @apply cursor-default;
+  }
+
+  .cursor-text {
+    @apply cursor-text;
+  }
+
+  .cursor-move {
+    @apply cursor-move;
+  }
+
+  .cursor-grab {
+    @apply cursor-grab;
+  }
+
+  .cursor-grabbing {
+    @apply cursor-grabbing;
+  }
+
+  .cursor-help {
+    @apply cursor-help;
+  }
+
+  .cursor-wait {
+    @apply cursor-wait;
+  }
+
+  .select-none {
+    @apply select-none;
+  }
+
+  .select-text {
+    @apply select-text;
+  }
+
+  .select-all {
+    @apply select-all;
+  }
+
+  .select-auto {
+    @apply select-auto;
+  }
+
+  .user-select-none {
+    @apply select-none;
+  }
+
+  .user-select-text {
+    @apply select-text;
+  }
+
+  .pointer-events-none {
+    @apply pointer-events-none;
+  }
+
+  .pointer-events-auto {
+    @apply pointer-events-auto;
+  }
+
+  /* Hover and active state utilities */
+  .hover-underline:hover {
+    @apply underline;
+  }
+
+  .hover-scale:hover {
+    @apply scale-105 transition-transform;
+  }
+
+  .hover-shadow:hover {
+    @apply shadow-lg transition-shadow;
+  }
+
+  .hover-brighten:hover {
+    filter: brightness(1.1);
+  }
+
+  .active-scale:active {
+    @apply scale-95;
+  }
+
+  .focus-ring:focus {
+    @apply ring-2 ring-green-600 ring-offset-2;
+  }
+
   .plant-image {
     @apply w-full h-40 object-cover rounded-lg mb-3 transition-transform duration-500 bg-gradient-to-br from-green-100 to-emerald-100;
   }
