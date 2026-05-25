@@ -324,6 +324,71 @@
     @apply opacity-60 cursor-not-allowed;
   }
 
+  /* Badge and label components */
+  .badge {
+    @apply inline-flex items-center justify-center font-semibold px-3 py-1 rounded-full text-sm transition-all duration-300;
+  }
+
+  .badge-primary {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .badge-success {
+    @apply bg-emerald-100 text-emerald-700;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-700;
+  }
+
+  .badge-error {
+    @apply bg-red-100 text-red-700;
+  }
+
+  .badge-info {
+    @apply bg-blue-100 text-blue-700;
+  }
+
+  .badge-ghost {
+    @apply bg-gray-100 text-gray-700;
+  }
+
+  .badge-lg {
+    @apply px-4 py-2 text-base;
+  }
+
+  .badge-sm {
+    @apply px-2 py-0.5 text-xs;
+  }
+
+  .badge-outline {
+    @apply border-2 border-current bg-transparent;
+  }
+
+  .label {
+    @apply inline-flex items-center justify-center font-semibold px-4 py-2 rounded-lg text-sm transition-all duration-300;
+  }
+
+  .label-primary {
+    @apply bg-green-500 text-white;
+  }
+
+  .label-success {
+    @apply bg-emerald-500 text-white;
+  }
+
+  .label-warning {
+    @apply bg-yellow-500 text-white;
+  }
+
+  .label-error {
+    @apply bg-red-500 text-white;
+  }
+
+  .label-info {
+    @apply bg-blue-500 text-white;
+  }
+
   /* Plant card refinements with enhanced animations */
   .plant-card {
     @apply bg-white rounded-xl shadow-md p-4 flex flex-col h-full transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl border border-gray-100 overflow-hidden;
