@@ -1614,7 +1614,38 @@
     animation: fadeIn 1s ease-out;
   }
 
-  /* Footer link styling with animations */
+  /* Footer styling */
+  footer {
+    @apply bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-300 border-t border-gray-700;
+    background-size: 200% 200%;
+    animation: slideInUp 0.8s ease-out;
+  }
+
+  footer::before {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-green-600 to-transparent;
+    opacity: 0.3;
+  }
+
+  .footer-section {
+    @apply transition-all duration-300;
+  }
+
+  .footer-section:hover {
+    @apply text-green-400;
+  }
+
+  .footer-heading {
+    @apply text-white font-bold text-lg mb-4 relative;
+  }
+
+  .footer-heading::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full;
+    animation: slideInLeft 0.4s ease-out;
+  }
+
+  /* Link footer styling */
   .footer-link {
     @apply text-gray-400 hover:text-white transition-all duration-300 font-medium;
   }
@@ -1622,6 +1653,32 @@
   .footer-link:hover {
     animation: slideInRight 0.3s ease-out;
   }
+
+  .footer-divider {
+    @apply border-t border-gray-700 my-6;
+  }
+
+  .footer-copyright {
+    @apply text-gray-500 text-sm text-center py-4;
+  }
+
+  /* Main container styling */
+  main {
+    @apply min-h-screen;
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  /* Page sections */
+  section {
+    @apply py-12 md:py-16 lg:py-20;
+    animation: slideInUp 0.6s ease-out backwards;
+  }
+
+  section:nth-of-type(1) { animation-delay: 0.1s; }
+  section:nth-of-type(2) { animation-delay: 0.2s; }
+  section:nth-of-type(3) { animation-delay: 0.3s; }
+  section:nth-of-type(4) { animation-delay: 0.4s; }
+  section:nth-of-type(5) { animation-delay: 0.5s; }
 
   /* Form validation */
   .input-error {
