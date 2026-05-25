@@ -389,6 +389,60 @@
     @apply bg-blue-500 text-white;
   }
 
+  /* Alert and notification components */
+  .alert {
+    @apply px-4 py-3 rounded-lg border-l-4 flex items-start gap-3 transition-all duration-300 animate-slideInDown;
+  }
+
+  .alert-primary {
+    @apply bg-green-50 border-l-green-600 text-green-700;
+  }
+
+  .alert-success {
+    @apply bg-emerald-50 border-l-emerald-600 text-emerald-700;
+  }
+
+  .alert-warning {
+    @apply bg-yellow-50 border-l-yellow-600 text-yellow-700;
+  }
+
+  .alert-error {
+    @apply bg-red-50 border-l-red-600 text-red-700;
+  }
+
+  .alert-info {
+    @apply bg-blue-50 border-l-blue-600 text-blue-700;
+  }
+
+  .alert-title {
+    @apply font-bold mb-1;
+  }
+
+  .alert-message {
+    @apply text-sm;
+  }
+
+  .notification {
+    @apply fixed right-4 top-20 max-w-md px-4 py-3 rounded-lg shadow-lg transition-all duration-300;
+    animation: slideInRight 0.4s ease-out;
+  }
+
+  .notification-success {
+    @apply bg-emerald-500 text-white;
+  }
+
+  .notification-error {
+    @apply bg-red-500 text-white;
+  }
+
+  .notification-warning {
+    @apply bg-yellow-500 text-white;
+  }
+
+  .notification-info {
+    @apply bg-blue-500 text-white;
+  }
+
   /* Plant card refinements with enhanced animations */
   .plant-card {
     @apply bg-white rounded-xl shadow-md p-4 flex flex-col h-full transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl border border-gray-100 overflow-hidden;
