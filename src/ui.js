@@ -1,18 +1,50 @@
 import { fetchPlantsByCategory, fetchPlantDetails } from './api.js';
 import { cart } from './cart.js';
 
-// UI management functions
+// Enhanced UI management functions
 export function showSpinner(show = true) {
   const spinner = document.getElementById('spinner');
   const cardContainer = document.querySelector('.card-container');
 
   if (show) {
     spinner?.classList.remove('hidden');
+    spinner?.classList.add('fade-in');
     cardContainer?.classList.add('hidden');
   } else {
     spinner?.classList.add('hidden');
+    spinner?.classList.remove('fade-in');
     cardContainer?.classList.remove('hidden');
+    cardContainer?.classList.add('fade-in');
   }
+}
+
+export function showNotification(message, type = 'success') {
+  const notification = document.createElement('div');
+  notification.className = `notification notification-${type} fixed right-4 top-20 max-w-md px-4 py-3 rounded-lg shadow-lg text-white font-semibold z-50 animate-slideInRight`;
+  notification.textContent = message;
+  
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.classList.add('animate-fadeOut');
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
+}
+
+export function showAlert(title, message, type = 'info') {
+  const alert = document.createElement('div');
+  alert.className = `alert alert-${type} m-4 animate-slideInDown`;
+  alert.innerHTML = `
+    <div class="alert-title">${title}</div>
+    <div class="alert-message">${message}</div>
+  `;
+  
+  const container = document.querySelector('main') || document.body;
+  container.insertBefore(alert, container.firstChild);
+  
+  setTimeout(() => {
+    alert.remove();
+  }, 5000);
 }
 
 export async function loadPlants(categoryId) {
@@ -22,6 +54,7 @@ export async function loadPlants(categoryId) {
     displayPlants(plants);
   } catch (error) {
     console.error('Error loading plants:', error);
+    showAlert('Error', 'Failed to load plants. Please try again.', 'error');
     displayPlants([]);
   }
   showSpinner(false);
@@ -35,31 +68,37 @@ export function displayPlants(plants) {
 
   if (plants.length === 0) {
     cardContainer.innerHTML = `
-      <h1 class="text-center md:text-5xl font-bold text-green-600 col-span-full items-center text-xl flex">
-        No plants found in this category
-      </h1>
+      <div class="col-span-full text-center py-12">
+        <h1 class="text-center md:text-5xl font-bold text-green-600 text-2xl mb-4">
+          No plants found in this category
+        </h1>
+        <p class="text-gray-500 text-lg">Try selecting a different category</p>
+      </div>
     `;
     return;
   }
 
-  plants.forEach((plant) => {
+  plants.forEach((plant, index) => {
     const card = document.createElement('div');
-    // Use md:col-span-4 so each card occupies 4 columns in a 12-column grid (3 cards per row)
     card.className =
-      'card flex flex-col justify-between shadow-sm hover:shadow-md rounded-md p-4 col-span-1 md:col-span-4 bg-white';
+      'plant-card flex flex-col justify-between shadow-md hover:shadow-2xl rounded-xl p-4 col-span-1 md:col-span-4 bg-white border border-gray-100 transition-all duration-300 hover:-translate-y-2';
+    card.style.animationDelay = `${index * 0.1}s`;
 
     card.innerHTML = `
-      <img src="${plant.image}" class="w-full h-40 object-cover mb-3 rounded-md" alt="${plant.name}">
+      <div class="relative overflow-hidden rounded-lg mb-3 h-48 bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center cursor-pointer group">
+        <img src="${plant.image}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="${plant.name}">
+        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+      </div>
       <div>
-        <p class="text-xl font-bold cursor-pointer hover:text-green-600 transition-colors" id="plant-name-${plant.id}">${plant.name}</p>
-        <p class="text-sm text-gray-600 mt-1">${plant.description || ''}</p>
+        <p class="text-lg font-bold cursor-pointer hover:text-green-600 transition-colors plant-name-link" id="plant-name-${plant.id}">${plant.name}</p>
+        <p class="text-sm text-gray-600 mt-1 line-clamp-2">${plant.description || ''}</p>
       </div>
-      <div class="flex justify-between items-center mt-3">
-        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-xl text-sm">${plant.category || ''}</span>
-        <span class="font-semibold text-lg">$${(Number(plant.price) || 0).toFixed(2)}</span>
+      <div class="flex justify-between items-center mt-4 mb-3">
+        <span class="badge badge-primary text-xs">${plant.category || 'Plant'}</span>
+        <span class="font-bold text-lg text-green-600">$${(Number(plant.price) || 0).toFixed(2)}</span>
       </div>
-      <button id="cart-btn-${plant.id}" class="btn btn-primary w-full mt-3 cart-btn">
-        Add To Cart
+      <button id="cart-btn-${plant.id}" class="btn-primary w-full cart-btn">
+        🛒 Add To Cart
       </button>
     `;
 
@@ -73,6 +112,7 @@ export function displayPlants(plants) {
         currency: 'usd',
       };
       cart.addItem(item);
+      showNotification(`${plant.name} added to cart!`, 'success');
     });
 
     card
@@ -85,6 +125,7 @@ export function displayPlants(plants) {
           }
         } catch (error) {
           console.error('Error loading plant details:', error);
+          showNotification('Failed to load plant details', 'error');
         }
       });
 
@@ -99,14 +140,18 @@ export function showPlantModal(plant) {
   modalContainer.innerHTML = `
     <input type="checkbox" id="plant-modal" class="modal-toggle" />
     <div class="modal">
-      <div class="modal-box relative max-w-lg">
-        <label for="plant-modal" class="btn btn-sm btn-circle absolute right-2 top-2 hover:bg-red-100">✕</label>
-        <h3 class="text-2xl font-bold mb-3 text-green-700">${plant.name}</h3>
-        <img src="${plant.image}" class="w-full h-48 object-cover rounded-md mb-3" alt="${plant.name}" />
-        <div class="space-y-2">
-          <p><strong class="text-green-600">Category:</strong> ${plant.category}</p>
-          <p><strong class="text-green-600">Price:</strong> ৳${plant.price}</p>
-          <p><strong class="text-green-600">Description:</strong> ${plant.description}</p>
+      <div class="modal-box relative max-w-lg rounded-2xl shadow-2xl border border-gray-100">
+        <label for="plant-modal" class="btn btn-sm btn-circle absolute right-2 top-2 hover:bg-red-100 hover:scale-110 transition-transform">✕</label>
+        <h3 class="text-3xl font-bold mb-4 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">${plant.name}</h3>
+        <img src="${plant.image}" class="w-full h-56 object-cover rounded-xl mb-4 shadow-md" alt="${plant.name}" />
+        <div class="space-y-3 mb-6">
+          <p><span class="font-bold text-green-600">Category:</span> ${plant.category}</p>
+          <p><span class="font-bold text-green-600">Price:</span> <span class="text-2xl font-bold text-green-600">$${plant.price}</span></p>
+          <p><span class="font-bold text-green-600">Description:</span> ${plant.description}</p>
+        </div>
+        <div class="flex gap-3 mt-6">
+          <button class="btn-primary flex-1" onclick="document.getElementById('plant-modal').checked = false">Close</button>
+          <button class="btn-success flex-1">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -121,6 +166,7 @@ export async function initializeCategories() {
     displayCategoryButtons(categories);
   } catch (error) {
     console.error('Error initializing categories:', error);
+    showAlert('Error', 'Failed to load categories', 'error');
   }
 }
 
@@ -128,23 +174,24 @@ export function displayCategoryButtons(categories) {
   const categoryContainer = document.getElementById('button-container');
   if (!categoryContainer) return;
 
-  categories.forEach((category) => {
+  categories.forEach((category, index) => {
     const button = document.createElement('button');
     button.textContent = category.category_name;
     button.className =
-      'w-full rounded-lg category-btn text-left py-2 px-3 transition-colors hover:bg-green-100';
+      'w-full rounded-lg category-btn text-left py-2 px-4 transition-all duration-300 hover:bg-green-100 font-medium border-2 border-transparent hover:border-green-600 animate-slideInLeft';
+    button.style.animationDelay = `${index * 0.1}s`;
 
     button.addEventListener('click', () => {
       loadPlants(category.id);
 
-      // Update button styles
+      // Update button styles with smooth transition
       document.querySelectorAll('.category-btn').forEach((btn) => {
-        btn.classList.remove('bg-green-700', 'text-white');
-        btn.classList.add('bg-gray-100', 'text-gray-700');
+        btn.classList.remove('bg-green-700', 'text-white', 'border-green-700');
+        btn.classList.add('bg-gray-100', 'text-gray-700', 'border-transparent');
       });
 
-      button.classList.remove('bg-gray-100', 'text-gray-700');
-      button.classList.add('bg-green-700', 'text-white');
+      button.classList.remove('bg-gray-100', 'text-gray-700', 'border-transparent');
+      button.classList.add('bg-green-700', 'text-white', 'border-green-700');
     });
 
     categoryContainer.appendChild(button);
