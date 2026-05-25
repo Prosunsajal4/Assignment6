@@ -213,6 +213,40 @@
     animation: slideInUp 0.6s ease-out;
   }
 
+  .btn-success {
+    @apply bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95;
+    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+    animation: slideInUp 0.6s ease-out;
+  }
+
+  .btn-error {
+    @apply bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+    animation: slideInUp 0.6s ease-out;
+  }
+
+  .btn-info {
+    @apply bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    animation: slideInUp 0.6s ease-out;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-lg;
+  }
+
+  .btn-block {
+    @apply w-full;
+  }
+
+  .btn-disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
   .card {
     @apply bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-gray-100;
     animation: slideInUp 0.6s ease-out backwards;
