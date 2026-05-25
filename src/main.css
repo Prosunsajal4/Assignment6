@@ -754,6 +754,84 @@
     overflow: hidden;
   }
 
+  /* Border radius variations */
+  .rounded-none {
+    @apply rounded-none;
+  }
+
+  .rounded-xs {
+    border-radius: 2px;
+  }
+
+  .rounded-sm {
+    border-radius: 4px;
+  }
+
+  .rounded-base {
+    @apply rounded;
+  }
+
+  .rounded-md {
+    @apply rounded-md;
+  }
+
+  .rounded-lg {
+    @apply rounded-lg;
+  }
+
+  .rounded-xl {
+    @apply rounded-xl;
+  }
+
+  .rounded-2xl {
+    @apply rounded-2xl;
+  }
+
+  .rounded-3xl {
+    @apply rounded-3xl;
+  }
+
+  .rounded-full {
+    @apply rounded-full;
+  }
+
+  /* Corner specific rounding */
+  .rounded-t-sm {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  .rounded-b-sm {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  .rounded-l-sm {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+  .rounded-r-sm {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  .rounded-tl-lg {
+    border-top-left-radius: 8px;
+  }
+
+  .rounded-tr-lg {
+    border-top-right-radius: 8px;
+  }
+
+  .rounded-bl-lg {
+    border-bottom-left-radius: 8px;
+  }
+
+  .rounded-br-lg {
+    border-bottom-right-radius: 8px;
+  }
+
   .plant-image {
     @apply w-full h-40 object-cover rounded-lg mb-3 transition-transform duration-500 bg-gradient-to-br from-green-100 to-emerald-100;
   }
