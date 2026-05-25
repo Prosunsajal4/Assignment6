@@ -490,6 +490,84 @@
     @apply absolute top-full left-1/2 -translate-x-1/2 border-4 border-t-white border-x-transparent border-b-transparent;
   }
 
+  /* Divider styles */
+  .divider {
+    @apply border-t-2 border-gray-200 my-6;
+  }
+
+  .divider-primary {
+    @apply border-t-2 border-green-600;
+  }
+
+  .divider-dashed {
+    @apply border-t-2 border-dashed border-gray-200;
+  }
+
+  .divider-dotted {
+    @apply border-t-2 border-dotted border-gray-200;
+  }
+
+  /* Advanced spacing and sizing */
+  .gap-xs {
+    @apply gap-1;
+  }
+
+  .gap-sm {
+    @apply gap-2;
+  }
+
+  .gap-md {
+    @apply gap-4;
+  }
+
+  .gap-lg {
+    @apply gap-6;
+  }
+
+  .gap-xl {
+    @apply gap-8;
+  }
+
+  .p-xs {
+    @apply p-1;
+  }
+
+  .p-sm {
+    @apply p-2;
+  }
+
+  .p-md {
+    @apply p-4;
+  }
+
+  .p-lg {
+    @apply p-6;
+  }
+
+  .p-xl {
+    @apply p-8;
+  }
+
+  .m-xs {
+    @apply m-1;
+  }
+
+  .m-sm {
+    @apply m-2;
+  }
+
+  .m-md {
+    @apply m-4;
+  }
+
+  .m-lg {
+    @apply m-6;
+  }
+
+  .m-xl {
+    @apply m-8;
+  }
+
   /* Plant card refinements with enhanced animations */
   .plant-card {
     @apply bg-white rounded-xl shadow-md p-4 flex flex-col h-full transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl border border-gray-100 overflow-hidden;
