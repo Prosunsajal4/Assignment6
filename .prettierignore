@@ -1,0 +1,21 @@
+# Ignore directories
+node_modules
+dist
+build
+.vite
+coverage
+.git
+
+# Ignore files
+.env
+.env.local
+.DS_Store
+*.log
+*.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Keep some files unformatted
+*.md
+LICENSE
