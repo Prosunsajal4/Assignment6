@@ -4,11 +4,16 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
 # Build outputs
 dist/
 build/
 .vite/
+.parcel-cache
+.cache/
 
 # Environment variables (NEVER commit these!)
 .env
@@ -28,6 +33,7 @@ build/
 .project
 .classpath
 .c9/
+*.sublime-project
 
 # OS
 .DS_Store
@@ -35,6 +41,8 @@ Thumbs.db
 .AppleDouble
 .LSOverride
 *.suo
+.Spotlight-V100
+.Trashes
 
 # Logs
 logs
@@ -47,6 +55,28 @@ pids
 *.pid
 *.seed
 *.pid.lock
+
+# Testing & Coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Editor-specific
+.vscode/settings.json
+.vscode/launch.json
+.editorconfig
+
+# Rollup/Build artifacts
+.rollup.cache/
+
+# Distribution
+public/assets/
+
 
 # Coverage directory
 coverage/
