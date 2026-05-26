@@ -12,20 +12,9 @@ export default defineConfig({
     sourcemap: false,
     reportCompressedSize: true,
     chunkSizeWarningLimit: 1000,
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
+    target: 'es2020',
+    cssCodeSplit: true,
     rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        about: resolve(__dirname, 'pages/about.html'),
-        gallery: resolve(__dirname, 'pages/gallery.html'),
-        contact: resolve(__dirname, 'pages/contact.html'),
-        developer: resolve(__dirname, 'pages/developer.html'),
-      },
       output: {
         manualChunks: (id) => {
           if (id.includes('node_modules/react')) {
@@ -37,17 +26,35 @@ export default defineConfig({
         },
       },
     },
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log'],
+      },
+      mangle: true,
+      output: {
+        comments: false,
+      },
+    },
+  },
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
+      '@components': resolve(__dirname, './src/components'),
+      '@utils': resolve(__dirname, './src/utils'),
+      '@hooks': resolve(__dirname, './src/hooks'),
+    },
   },
   server: {
     port: 3000,
-    open: true,
+    open: false,
     host: true,
-    // Use robust watch options for networked filesystems (OneDrive)
+    middlewareMode: false,
     watch: {
       usePolling: true,
       interval: 100,
       followSymlinks: true,
-      // Wait for file writes to finish before triggering reloads
       awaitWriteFinish: {
         stabilityThreshold: 200,
         pollInterval: 100,
@@ -55,7 +62,12 @@ export default defineConfig({
     },
     hmr: {
       overlay: true,
+      protocol: 'ws',
     },
+  },
+  preview: {
+    port: 3000,
+    host: true,
   },
   publicDir: 'assets',
 });
