@@ -1,0 +1,56 @@
+{
+  "name": "Green Earth - Tree Planting Campaign",
+  "short_name": "Green Earth",
+  "description": "Join our mission to plant 1 million trees and make the Earth greener for future generations.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#0f766e",
+  "background_color": "#ffffff",
+  "categories": ["environment", "social-good"],
+  "screenshots": [
+    {
+      "src": "/assets/screenshot1.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/assets/screenshot2.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/assets/hero-leaf1.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/hero-leaf1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Donate",
+      "short_name": "Donate",
+      "description": "Make a donation to plant trees",
+      "url": "/pages/contact.html",
+      "icons": [{ "src": "/assets/hero-leaf1.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Gallery",
+      "short_name": "Gallery",
+      "description": "View our tree gallery",
+      "url": "/pages/gallery.html",
+      "icons": [{ "src": "/assets/hero-leaf1.png", "sizes": "96x96" }]
+    }
+  ]
+}
