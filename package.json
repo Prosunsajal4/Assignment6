@@ -10,7 +10,12 @@
     "start-server": "node server.js",
     "test": "vitest",
     "lint": "eslint src/ --ext js",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/ .",
+    "prepare": "husky install",
+    "health": "node scripts/automation.js health",
+    "clean": "node scripts/automation.js clean",
+    "changelog": "node scripts/automation.js changelog",
+    "feature": "node scripts/automation.js feature"
   },
   "dependencies": {
     "cors": "^2.8.5",
