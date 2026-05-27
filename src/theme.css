@@ -236,28 +236,28 @@
 
   .badge,
   .label {
-    @apply inline-flex items-center justify-center font-semibold transition-all duration-300;
+    @apply inline-flex items-center justify-center font-semibold transition-all duration-200;
     border-radius: 9999px;
   }
 
-  .badge { @apply px-3 py-1 text-sm border; }
-  .badge-lg { @apply px-4 py-2 text-base; }
+  .badge { @apply px-3 py-1.5 text-sm border; }
+  .badge-lg { @apply px-5 py-2.5 text-base; }
   .badge-sm { @apply px-2 py-0.5 text-xs; }
   .badge-outline { @apply border-2 border-current bg-transparent; }
 
-  .badge-primary { @apply bg-emerald-50 text-emerald-800 border-emerald-200; }
-  .badge-success { @apply bg-teal-50 text-teal-800 border-teal-200; }
-  .badge-warning { @apply bg-amber-50 text-amber-800 border-amber-200; }
-  .badge-error { @apply bg-rose-50 text-rose-800 border-rose-200; }
-  .badge-info { @apply bg-sky-50 text-sky-800 border-sky-200; }
-  .badge-ghost { @apply bg-slate-100 text-slate-700 border-slate-200; }
+  .badge-primary { @apply bg-emerald-100 text-emerald-900 border-emerald-300 shadow-sm; }
+  .badge-success { @apply bg-teal-100 text-teal-900 border-teal-300 shadow-sm; }
+  .badge-warning { @apply bg-amber-100 text-amber-900 border-amber-300 shadow-sm; }
+  .badge-error { @apply bg-rose-100 text-rose-900 border-rose-300 shadow-sm; }
+  .badge-info { @apply bg-sky-100 text-sky-900 border-sky-300 shadow-sm; }
+  .badge-ghost { @apply bg-slate-200 text-slate-800 border-slate-300 shadow-sm; }
 
-  .label { @apply px-4 py-2 text-sm; }
-  .label-primary { @apply bg-emerald-600 text-white; }
-  .label-success { @apply bg-teal-600 text-white; }
-  .label-warning { @apply bg-amber-500 text-white; }
-  .label-error { @apply bg-rose-500 text-white; }
-  .label-info { @apply bg-sky-500 text-white; }
+  .label { @apply px-4 py-2.5 text-sm; }
+  .label-primary { @apply bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-md; }
+  .label-success { @apply bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-md; }
+  .label-warning { @apply bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-md; }
+  .label-error { @apply bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-md; }
+  .label-info { @apply bg-gradient-to-r from-sky-500 to-sky-600 text-white shadow-md; }
 
   .alert {
     @apply px-5 py-4 rounded-2xl border flex items-start gap-3 transition-all duration-300 backdrop-blur-sm shadow-lg;
