@@ -267,28 +267,28 @@ function GalleryApp() {
               {plants.map((plant) => (
                 <div
                   key={plant.id}
-                  className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:transform hover:scale-105 border border-gray-100"
+                  className="group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden hover:transform hover:scale-105 border border-gray-100 flex flex-col"
                 >
                   <div className="relative h-40 bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center overflow-hidden">
                     {plant.image ? (
                       <img
                         src={plant.image}
                         alt={plant.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
                     ) : (
-                      <span className="text-5xl">🌿</span>
+                      <span className="text-5xl group-hover:scale-125 transition-transform duration-300">🌿</span>
                     )}
                   </div>
-                  <div className="p-4">
-                    <h3 className="font-bold text-lg text-gray-800 mb-2 line-clamp-2">
+                  <div className="p-4 flex flex-col flex-grow">
+                    <h3 className="font-bold text-lg text-gray-800 mb-2 line-clamp-2 group-hover:text-green-600 transition-colors">
                       {plant.name}
                     </h3>
                     <p className="text-gray-600 text-sm mb-3 line-clamp-2">
                       {plant.description ||
                         'A beautiful plant for your garden.'}
                     </p>
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center justify-between mb-4 mt-auto">
                       <span className="text-2xl font-bold text-green-600">
                         ${formatPrice(plant.price)}
                       </span>
