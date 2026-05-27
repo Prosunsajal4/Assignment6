@@ -171,10 +171,9 @@ function GalleryApp() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
       <aside className="md:col-span-2">
-        <div className="bg-white rounded-xl shadow-lg p-6 sticky top-6 border border-gray-100">
+        <div className="bg-white rounded-xl shadow-lg p-6 sticky top-6 z-40 border border-gray-100">
           <h2 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
-            Categories
-          </h2>
+            🏷️ Categories</h2>
           <div className="flex flex-col gap-2">
             {catLoading ? (
               <div className="flex justify-center py-8">
