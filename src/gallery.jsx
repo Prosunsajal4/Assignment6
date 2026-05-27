@@ -308,7 +308,7 @@ function GalleryApp() {
       </section>
 
       <aside className="md:col-span-3">
-        <div className="bg-white rounded-xl shadow-lg p-6 sticky top-6 z-40 border border-gray-100">
+        <div className="bg-white rounded-xl shadow-lg p-6 sticky top-20 z-40 border border-gray-100 max-h-screen overflow-y-auto">
           <h3 className="font-bold text-xl bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
             🛒 Your Cart</h3>
           {cart.items.length === 0 ? (
