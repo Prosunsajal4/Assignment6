@@ -339,10 +339,10 @@ function GalleryApp() {
                 </div>
               ))}
 
-              <div className="border-t-2 border-gray-200 pt-4 mt-4">
-                <div className="flex justify-between font-bold text-lg mb-4 text-gray-800">
-                  <span>Total</span>
-                  <span className="text-green-600">
+              <div className="border-t-2 border-green-200 pt-4 mt-4">
+                <div className="flex justify-between font-bold text-lg mb-4 text-gray-800 bg-gradient-to-r from-green-50 to-emerald-50 p-3 rounded-lg">
+                  <span>Total:</span>
+                  <span className="text-transparent bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text">
                     ${cart.total().toFixed(2)}
                   </span>
                 </div>
