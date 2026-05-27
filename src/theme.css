@@ -258,10 +258,21 @@
 
   .checkbox,
   .radio {
-    @apply h-5 w-5 text-emerald-600 focus:ring-2 focus:ring-emerald-100 cursor-pointer;
+    @apply h-6 w-6 text-emerald-600 focus:ring-2 focus:ring-emerald-400 focus:ring-offset-1 cursor-pointer transition-all duration-200;
+    accent-color: rgb(16, 185, 129);
   }
 
   .radio { @apply rounded-full; }
+
+  .checkbox:hover,
+  .radio:hover {
+    @apply shadow-md;
+  }
+
+  .checkbox:disabled,
+  .radio:disabled {
+    @apply opacity-60 cursor-not-allowed;
+  }
 
   .badge,
   .label {
