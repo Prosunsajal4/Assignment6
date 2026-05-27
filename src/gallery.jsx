@@ -3,6 +3,11 @@ import { createRoot } from 'react-dom/client';
 import '../src/main.css';
 import { fetchCategories, fetchPlantsByCategory } from './api.js';
 
+/**
+ * Format price to 2 decimal places
+ * @param {number} p - Price value
+ * @returns {string} Formatted price string
+ */
 function formatPrice(p) {
   const n = Number(p) || 0;
   return n.toFixed(2);
