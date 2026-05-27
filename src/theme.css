@@ -390,27 +390,28 @@
   }
 
   footer {
-    @apply text-slate-200 border-t;
-    background: linear-gradient(135deg, #09110d 0%, #10261d 46%, #0f172a 100%);
-    border-top-color: rgba(255, 255, 255, 0.1);
+    @apply text-slate-300 border-t;
+    background: linear-gradient(135deg, #09110d 0%, #0d1e1a 30%, #0f2d26 60%, #0f172a 100%);
+    border-top-color: rgba(16, 185, 129, 0.2);
     background-size: 200% 200%;
     animation: slideInUp 0.8s ease-out;
   }
   footer::before {
     content: '';
-    @apply absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300 to-transparent;
-    opacity: 0.22;
+    @apply absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent;
+    opacity: 0.35;
   }
-  .footer-section { @apply transition-all duration-300; }
-  .footer-section:hover { @apply text-emerald-200; }
-  .footer-heading { @apply text-white font-bold text-lg mb-4 relative; }
+  .footer-section { @apply transition-all duration-300 hover:pl-1; }
+  .footer-section:hover { @apply text-emerald-300; }
+  .footer-heading { @apply text-white font-bold text-lg mb-4 relative tracking-tight; }
   .footer-heading::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-emerald-300 to-sky-300 rounded-full;
+    @apply absolute bottom-0 left-0 w-10 h-1.5 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full transition-all duration-300;
   }
-  .footer-link { @apply text-slate-300 hover:text-white transition-all duration-300 font-medium; }
-  .footer-divider { @apply border-t my-6; border-top-color: rgba(255, 255, 255, 0.1); }
-  .footer-copyright { @apply text-slate-400 text-sm text-center py-4; }
+  .footer-section:hover .footer-heading::after { @apply w-14; }
+  .footer-link { @apply text-slate-400 hover:text-emerald-300 transition-all duration-300 font-medium py-1; }
+  .footer-divider { @apply border-t my-6; border-top-color: rgba(16, 185, 129, 0.15); }
+  .footer-copyright { @apply text-slate-500 text-sm text-center py-5 border-t; border-top-color: rgba(16, 185, 129, 0.1); }
 
   .text-gradient {
     background: linear-gradient(135deg, #0f766e 0%, #14b8a6 48%, #0f172a 100%);
