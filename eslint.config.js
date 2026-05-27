@@ -35,7 +35,7 @@ export default [
       'prefer-arrow-callback': 'warn',
 
       // Code quality
-      'eqeqeq': ['error', 'always'],
+      eqeqeq: ['error', 'always'],
       'no-implicit-coercion': 'error',
       'no-eval': 'error',
       'no-implied-eval': 'error',
@@ -52,10 +52,10 @@ export default [
       'no-await-in-loop': 'warn',
 
       // Style consistency
-      'semi': ['error', 'always'],
-      'quotes': ['error', 'single', { avoidEscape: true }],
+      semi: ['error', 'always'],
+      quotes: ['error', 'single', { avoidEscape: true }],
       'comma-dangle': ['error', 'always-multiline'],
-      'indent': ['error', 2],
+      indent: ['error', 2],
       'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
       'arrow-spacing': 'error',
       'object-curly-spacing': ['error', 'always'],

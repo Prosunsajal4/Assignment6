@@ -21,16 +21,19 @@ export function useLocalStorage(key, initialValue) {
     }
   });
 
-  const setValue = useCallback((value) => {
-    try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-      logger.debug(`LocalStorage updated: ${key}`, valueToStore);
-    } catch (error) {
-      logger.error(`Error writing to localStorage: ${key}`, error);
-    }
-  }, [key, storedValue]);
+  const setValue = useCallback(
+    (value) => {
+      try {
+        const valueToStore = value instanceof Function ? value(storedValue) : value;
+        setStoredValue(valueToStore);
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+        logger.debug(`LocalStorage updated: ${key}`, valueToStore);
+      } catch (error) {
+        logger.error(`Error writing to localStorage: ${key}`, error);
+      }
+    },
+    [key, storedValue]
+  );
 
   return [storedValue, setValue];
 }
@@ -55,13 +58,16 @@ export function useDebounce(value, delay = UI_CONFIG.DEBOUNCE_DELAY) {
 export function useThrottle(callback, delay = UI_CONFIG.THROTTLE_DELAY) {
   const lastRun = useRef(Date.now());
 
-  return useCallback((...args) => {
-    const now = Date.now();
-    if (now - lastRun.current >= delay) {
-      callback(...args);
-      lastRun.current = now;
-    }
-  }, [callback, delay]);
+  return useCallback(
+    (...args) => {
+      const now = Date.now();
+      if (now - lastRun.current >= delay) {
+        callback(...args);
+        lastRun.current = now;
+      }
+    },
+    [callback, delay]
+  );
 }
 
 /**
@@ -72,21 +78,24 @@ export function useAsync(asyncFunction, immediate = true) {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
 
-  const execute = useCallback(async (...args) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await asyncFunction(...args);
-      setData(response);
-      return response;
-    } catch (err) {
-      setError(err);
-      logger.error('Async operation failed', err);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, [asyncFunction]);
+  const execute = useCallback(
+    async (...args) => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await asyncFunction(...args);
+        setData(response);
+        return response;
+      } catch (err) {
+        setError(err);
+        logger.error('Async operation failed', err);
+        throw err;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [asyncFunction]
+  );
 
   useEffect(() => {
     if (immediate) {
@@ -163,15 +172,18 @@ export function useSessionStorage(key, initialValue) {
     }
   });
 
-  const setValue = useCallback((value) => {
-    try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      window.sessionStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {
-      logger.error(`Error writing to sessionStorage: ${key}`, error);
-    }
-  }, [key, storedValue]);
+  const setValue = useCallback(
+    (value) => {
+      try {
+        const valueToStore = value instanceof Function ? value(storedValue) : value;
+        setStoredValue(valueToStore);
+        window.sessionStorage.setItem(key, JSON.stringify(valueToStore));
+      } catch (error) {
+        logger.error(`Error writing to sessionStorage: ${key}`, error);
+      }
+    },
+    [key, storedValue]
+  );
 
   return [storedValue, setValue];
 }

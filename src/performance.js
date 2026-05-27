@@ -103,7 +103,9 @@ class PerformanceMonitor {
               vitals.INP = entry.duration;
             }
           }
-        }).observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift', 'event'] });
+        }).observe({
+          entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift', 'event'],
+        });
       }
     } catch (error) {
       logger.error('Error getting Web Vitals', error);
