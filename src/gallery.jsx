@@ -47,7 +47,6 @@ function GalleryApp() {
   const [catLoading, setCatLoading] = useState(false);
   const [error, setError] = useState(null);
   const cart = useCart();
-  const [showDebug, setShowDebug] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
 
   useEffect(() => {
