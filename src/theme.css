@@ -549,7 +549,22 @@
 
 @layer utilities {
   :focus-visible {
-    @apply ring-2 ring-emerald-600 ring-offset-2;
+    @apply ring-2 ring-emerald-500 ring-offset-2 outline-none;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    @apply ring-2 ring-emerald-500 ring-offset-2;
+  }
+
+  .btn-primary:focus-visible,
+  .btn-success:focus-visible,
+  .btn-warning:focus-visible,
+  .btn-info:focus-visible,
+  .btn-error:focus-visible {
+    @apply ring-2 ring-offset-2;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -558,5 +573,9 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.001ms !important;
     }
+  }
+
+  .sr-only {
+    @apply absolute w-1 h-1 p-0 -m-1 overflow-hidden clip-rect-0 whitespace-nowrap border-0;
   }
 }
