@@ -1,4 +1,4 @@
-import './main.css';
+import './theme.css';
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {

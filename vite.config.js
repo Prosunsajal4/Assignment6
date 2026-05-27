@@ -8,7 +8,7 @@ export default defineConfig({
   root: '.',
   build: {
     outDir: 'dist',
-    minify: 'terser',
+    minify: 'esbuild',
     sourcemap: false,
     reportCompressedSize: true,
     chunkSizeWarningLimit: 1000,
@@ -24,17 +24,6 @@ export default defineConfig({
             return 'vendor';
           }
         },
-      },
-    },
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.log'],
-      },
-      mangle: true,
-      output: {
-        comments: false,
       },
     },
   },
