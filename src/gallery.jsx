@@ -250,9 +250,9 @@ function GalleryApp() {
           ) : loading ? (
             <div className="py-16 text-center">
               <div className="inline-block">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
-                <p className="mt-4 text-gray-600 font-medium">
-                  Loading amazing plants...
+                <div className="animate-spin rounded-full h-16 w-16 border-4 border-gray-300 border-t-green-600 mb-4"></div>
+                <p className="text-gray-600 font-medium">
+                  🌱 Loading amazing plants...
                 </p>
               </div>
             </div>
