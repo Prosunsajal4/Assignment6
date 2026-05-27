@@ -211,9 +211,9 @@ function GalleryApp() {
                 setSelected('all');
                 fetchAllPlants();
               }}
-              className={`rounded-full py-2 px-6 font-semibold transition-all transform hover:scale-105 ${selected === 'all' ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              className={`rounded-full py-2 px-6 font-semibold transition-all transform hover:scale-105 whitespace-nowrap ${selected === 'all' ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg scale-105' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
             >
-              All Trees
+              🌳 All Trees
             </button>
           </div>
 
