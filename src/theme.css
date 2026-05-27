@@ -109,7 +109,18 @@
   p { @apply leading-relaxed text-slate-700; }
 
   a {
-    @apply text-emerald-700 font-medium transition-colors duration-200 hover:text-emerald-900;
+    @apply text-emerald-700 font-medium transition-colors duration-200 hover:text-emerald-900 hover:underline;
+  }
+
+  strong { @apply font-bold text-slate-900; }
+  em { @apply italic text-slate-800; }
+
+  code {
+    @apply bg-slate-100 text-slate-900 px-2 py-1 rounded font-mono text-sm;
+  }
+
+  blockquote {
+    @apply border-l-4 border-emerald-500 pl-4 py-2 italic text-slate-600 my-4;
   }
 
   ::selection {
