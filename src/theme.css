@@ -596,6 +596,29 @@
   .section-bg-dark { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
   .section-bg-gradient { background: linear-gradient(135deg, #22c55e 0%, #10b981 50%, #0d9488 100%); }
 
+  /* Advanced component states */
+  .state-active { @apply ring-2 ring-emerald-500 shadow-lg; }
+  .state-disabled { @apply opacity-50 cursor-not-allowed; }
+  .state-hover { @apply hover:shadow-lg hover:scale-105 transition-all duration-300; }
+  .state-focus { @apply focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2; }
+
+  /* Size variants for flexible components */
+  .size-xs { @apply text-xs py-1 px-2; }
+  .size-sm { @apply text-sm py-2 px-3; }
+  .size-md { @apply text-base py-3 px-4; }
+  .size-lg { @apply text-lg py-4 px-6; }
+  .size-xl { @apply text-xl py-5 px-8; }
+
+  /* Emphasis and accent utilities */
+  .emphasis-high { @apply font-extrabold text-slate-900; }
+  .emphasis-medium { @apply font-bold text-slate-800; }
+  .emphasis-low { @apply font-medium text-slate-700; }
+
+  /* Border accent utilities */
+  .border-accent { @apply border-l-4 border-emerald-500; }
+  .border-accent-top { @apply border-t-4 border-emerald-500; }
+  .border-accent-bottom { @apply border-b-4 border-emerald-500; }
+
   .float { animation: float 3s ease-in-out infinite; }
   .float-animation { animation: float 3.5s ease-in-out infinite; }
   .micro-bounce { animation: bounceIn 0.8s ease-out; }
