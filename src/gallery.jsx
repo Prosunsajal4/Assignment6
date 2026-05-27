@@ -312,9 +312,17 @@ function GalleryApp() {
       </section>
 
       <aside className="md:col-span-3">
-        <div className="bg-white rounded-xl shadow-lg p-6 sticky top-20 z-40 border border-gray-100 max-h-screen overflow-y-auto">
-          <h3 className="font-bold text-xl bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
-            🛒 Your Cart</h3>
+        <div className={`bg-white rounded-xl shadow-lg p-6 sticky top-20 z-40 border-2 transition-colors ${cart.items.length > 0 ? 'border-green-400 shadow-green-200' : 'border-gray-100'}`}>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-bold text-xl bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              🛒 Your Cart
+            </h3>
+            {cart.items.length > 0 && (
+              <span className="bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+                {cart.items.length}
+              </span>
+            )}
+          </div>
           {cart.items.length === 0 ? (
             <p className="text-gray-500 text-center py-8">Your cart is empty</p>
           ) : (
