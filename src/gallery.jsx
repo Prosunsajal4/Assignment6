@@ -318,12 +318,12 @@ function GalleryApp() {
               {cart.items.map((it, idx) => (
                 <div
                   key={idx}
-                  className="flex justify-between items-start bg-gray-50 p-3 rounded-lg border border-gray-200"
+                  className="flex justify-between items-start bg-gradient-to-br from-green-50 to-emerald-50 p-3 rounded-lg border-2 border-green-200 hover:border-green-400 transition-colors"
                 >
-                  <div>
+                  <div className="flex-1">
                     <div className="font-semibold text-gray-800">{it.name}</div>
                     <div className="text-sm text-gray-600">
-                      ${Number(it.price).toFixed(2)} × {it.quantity}
+                      ${Number(it.price).toFixed(2)} × {it.quantity || 1}
                     </div>
                   </div>
                   <button
