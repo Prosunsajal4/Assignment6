@@ -395,15 +395,20 @@
   .hero-banner {
     @apply relative overflow-hidden;
     background:
-      radial-gradient(circle at top left, rgba(34, 197, 94, 0.26), transparent 34%),
+      radial-gradient(circle at top left, rgba(34, 197, 94, 0.3), transparent 36%),
+      radial-gradient(circle at bottom right, rgba(13, 148, 136, 0.25), transparent 40%),
       linear-gradient(135deg, #0f172a 0%, #123024 46%, #0f766e 100%);
     background-size: 200% 200%;
-    animation: gradientShift 8s ease infinite, slideInUp 0.8s ease-out;
+    animation: gradientShift 10s ease infinite, slideInUp 0.8s ease-out;
   }
   .hero-banner::before {
     content: '';
     @apply absolute inset-0;
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.18), rgba(15, 23, 42, 0.56));
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.16), rgba(15, 23, 42, 0.52));
+  }\n  .hero-banner::after {
+    content: '';
+    @apply absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-emerald-400 to-transparent;
+    opacity: 0.2;
   }
 
   footer {
