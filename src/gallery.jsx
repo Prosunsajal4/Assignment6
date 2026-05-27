@@ -223,10 +223,11 @@ function GalleryApp() {
 
           {error ? (
             <div className="py-16 text-center">
-              <div className="inline-block bg-red-50 border-2 border-red-200 rounded-lg p-6">
-                <p className="text-red-600 font-semibold mb-4">
+              <div className="inline-block bg-red-50 border-2 border-red-300 rounded-xl p-6 shadow-lg">
+                <p className="text-red-600 font-semibold mb-4 text-lg">
                   ⚠️ Failed to load plants
                 </p>
+                <p className="text-red-500 text-sm mb-4">{error}</p>
                 <button
                   onClick={() => {
                     setError(null);
@@ -240,9 +241,9 @@ function GalleryApp() {
                       fetchAllPlants();
                     }
                   }}
-                  className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-full transition-colors"
+                  className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-full transition-all transform hover:scale-105"
                 >
-                  Retry
+                  🔄 Retry
                 </button>
               </div>
             </div>
