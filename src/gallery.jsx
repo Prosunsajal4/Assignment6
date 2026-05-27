@@ -48,6 +48,7 @@ function GalleryApp() {
   const [error, setError] = useState(null);
   const cart = useCart();
   const [showDebug, setShowDebug] = useState(false);
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
 
   useEffect(() => {
     setCatLoading(true);
@@ -124,6 +125,8 @@ function GalleryApp() {
       return;
     }
 
+    setIsCheckingOut(true);
+
     const payloadItems = cart.items.map((it) => ({
       name: it.name || 'Plant',
       description: it.description || '',
@@ -165,6 +168,7 @@ function GalleryApp() {
     } catch (err) {
       console.error('Checkout error:', err);
       alert(`Checkout failed: ${err.message || 'Unknown error'}`);
+      setIsCheckingOut(false);
     }
   }
 
@@ -343,10 +347,11 @@ function GalleryApp() {
                   </span>
                 </div>
                 <button
-                  className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-3 px-4 rounded-lg transition-all transform hover:scale-105 shadow-md hover:shadow-lg mb-2"
+                  className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-3 px-4 rounded-lg transition-all transform hover:scale-105 shadow-md hover:shadow-lg mb-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   onClick={handleCheckout}
+                  disabled={isCheckingOut}
                 >
-                  🛍️ Checkout
+                  {isCheckingOut ? '⏳ Processing...' : '🛍️ Checkout'}
                 </button>
                 <button
                   className="w-full border-2 border-gray-300 text-gray-700 hover:text-gray-900 font-semibold py-2 px-4 rounded-lg transition-all hover:border-gray-400"
