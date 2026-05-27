@@ -104,18 +104,18 @@
   .btn-primary {
     @apply text-white px-6 py-3;
     background: linear-gradient(135deg, #0f766e 0%, #14532d 100%);
-    box-shadow: 0 12px 24px rgba(15, 118, 110, 0.18);
+    box-shadow: 0 8px 16px rgba(15, 118, 110, 0.2), 0 2px 4px rgba(15, 118, 110, 0.1);
   }
 
   .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 32px rgba(15, 118, 110, 0.22);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px rgba(15, 118, 110, 0.28), 0 4px 8px rgba(15, 118, 110, 0.16);
   }
 
   .btn-success {
     @apply text-white px-6 py-3;
-    background: linear-gradient(135deg, #059669 0%, #0f766e 100%);
-    box-shadow: 0 12px 24px rgba(5, 150, 105, 0.18);
+    background: linear-gradient(135deg, #059669 0%, #10b981 50%, #0f766e 100%);
+    box-shadow: 0 8px 16px rgba(5, 150, 105, 0.2), 0 2px 4px rgba(5, 150, 105, 0.1);
   }
 
   .btn-warning {
