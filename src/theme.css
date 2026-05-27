@@ -472,6 +472,14 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    background-size: 200% 200%;
+  }
+
+  .text-gradient-emerald {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .text-gradient-multi {
@@ -480,13 +488,23 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: gradientShift 8s ease infinite;
+    background-size: 200% 200%;
   }
 
-  .text-shadow { text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
-  .text-shadow-lg { text-shadow: 0 6px 20px rgba(0, 0, 0, 0.18); }
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-  .bg-radial-green { background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%); }
-  .bg-radial-blue { background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%); }
+  .text-shadow { text-shadow: 0 2px 4px rgba(0, 0, 0, 0.12); }
+  .text-shadow-lg { text-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+  .text-shadow-emerald { text-shadow: 0 2px 8px rgba(16, 185, 129, 0.25); }
+
+  .bg-radial-green { background: radial-gradient(circle, rgba(34, 197, 94, 0.12) 0%, transparent 70%); }
+  .bg-radial-blue { background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%); }
+  .bg-radial-emerald { background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%); }
   .bg-pattern-dots { background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px); background-size: 20px 20px; }
   .bg-pattern-lines { background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.03) 10px, rgba(0, 0, 0, 0.03) 20px); }
   .bg-pattern-grid { background-image: linear-gradient(0deg, #e5e7eb 1px, transparent 1px), linear-gradient(90deg, #e5e7eb 1px, transparent 1px); background-size: 20px 20px; }
