@@ -177,18 +177,18 @@ function GalleryApp() {
           <div className="flex flex-col gap-2">
             {catLoading ? (
               <div className="flex justify-center py-8">
-                <div
-                  className="spinner"
-                  role="status"
-                  aria-label="Loading categories"
-                ></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+              </div>
+            ) : categories.length === 0 ? (
+              <div className="text-sm text-red-600 p-4 bg-red-50 rounded-lg">
+                Unable to load categories. Please refresh the page.
               </div>
             ) : (
               categories.map((c) => (
                 <button
                   key={c.id}
                   onClick={() => setSelected(c.id)}
-                  className={`w-full rounded-lg text-left py-3 px-4 font-semibold transition-all duration-200 transform hover:scale-105 ${selected === c.id ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg' : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200'}`}
+                  className={`w-full rounded-lg text-left py-3 px-4 font-semibold transition-all duration-200 transform hover:scale-105 ${selected === c.id ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg scale-105' : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200'}`}
                 >
                   {c.category_name}
                 </button>
