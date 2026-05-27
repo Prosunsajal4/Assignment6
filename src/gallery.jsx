@@ -8,13 +8,20 @@ function formatPrice(p) {
   return n.toFixed(2);
 }
 
-function useCart() {
+  function useCart() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     // persist in localStorage
     const raw = localStorage.getItem('cart_items');
-    if (raw) setItems(JSON.parse(raw));
+    if (raw) {
+      try {
+        setItems(JSON.parse(raw));
+      } catch (e) {
+        console.error('Failed to parse cart items:', e);
+        setItems([]);
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -22,7 +29,19 @@ function useCart() {
   }, [items]);
 
   function add(item) {
-    setItems((s) => [...s, item]);
+    // Check if item already exists in cart
+    const existing = items.find(i => i.id === item.id);
+    if (existing) {
+      // Increment quantity
+      setItems((s) => s.map(i => 
+        i.id === item.id 
+          ? { ...i, quantity: (i.quantity || 1) + 1 }
+          : i
+      ));
+    } else {
+      // Add new item
+      setItems((s) => [...s, { ...item, quantity: 1 }]);
+    }
   }
   function remove(index) {
     setItems((s) => s.filter((_, i) => i !== index));
