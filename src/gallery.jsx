@@ -209,8 +209,11 @@ function GalleryApp() {
               categories.map((c) => (
                 <button
                   key={c.id}
-                  onClick={() => setSelected(c.id)}
-                  className={`w-full rounded-lg text-left py-3 px-4 font-semibold transition-all duration-200 transform hover:scale-105 ${selected === c.id ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg scale-105' : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200'}`}
+                  onClick={() => {
+                    setSelected(c.id);
+                    setPlants([]); // Clear plants while loading new category
+                  }}
+                  className={`w-full rounded-lg text-left py-3 px-4 font-semibold transition-all duration-300 transform hover:scale-105 ${selected === c.id ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg scale-105' : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200'}`}
                 >
                   {c.category_name}
                 </button>
