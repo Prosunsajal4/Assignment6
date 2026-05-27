@@ -355,10 +355,10 @@ function GalleryApp() {
                   {isCheckingOut ? '⏳ Processing...' : '🛍️ Checkout'}
                 </button>
                 <button
-                  className="w-full border-2 border-gray-300 text-gray-700 hover:text-gray-900 font-semibold py-2 px-4 rounded-lg transition-all hover:border-gray-400"
+                  className="w-full border-2 border-gray-300 text-gray-700 hover:text-gray-900 font-semibold py-2 px-4 rounded-lg transition-all hover:border-gray-400 hover:bg-gray-50"
                   onClick={() => cart.clear()}
                 >
-                  Clear Cart
+                  🗑️ Clear Cart
                 </button>
               </div>
             </div>
