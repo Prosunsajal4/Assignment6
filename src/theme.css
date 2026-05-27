@@ -363,18 +363,29 @@
   .gap-md { @apply gap-4; }
   .gap-lg { @apply gap-6; }
   .gap-xl { @apply gap-8; }
+  .gap-2xl { @apply gap-12; }
 
   .p-xs { @apply p-1; }
   .p-sm { @apply p-2; }
   .p-md { @apply p-4; }
   .p-lg { @apply p-6; }
   .p-xl { @apply p-8; }
+  .p-2xl { @apply p-12; }
 
   .m-xs { @apply m-1; }
   .m-sm { @apply m-2; }
   .m-md { @apply m-4; }
   .m-lg { @apply m-6; }
   .m-xl { @apply m-8; }
+  .m-2xl { @apply m-12; }
+
+  .px-sm { @apply px-3; }
+  .px-md { @apply px-5; }
+  .px-lg { @apply px-7; }
+
+  .py-sm { @apply py-2; }
+  .py-md { @apply py-3; }
+  .py-lg { @apply py-4; }
 
   .plant-card {
     @apply bg-white/92 rounded-3xl shadow-md p-5 flex flex-col h-full transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl overflow-hidden;
