@@ -276,9 +276,14 @@ function GalleryApp() {
             </div>
           ) : plants.length === 0 ? (
             <div className="py-16 text-center">
-              <p className="text-gray-500 text-lg">
-                No plants found in this category.
-              </p>
+              <div className="inline-block bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
+                <p className="text-blue-600 font-semibold text-lg mb-2">
+                  🌍 No plants found in this category
+                </p>
+                <p className="text-blue-500 text-sm">
+                  Try selecting a different category or browse all trees
+                </p>
+              </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
