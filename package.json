@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/postbuild.js",
     "preview": "vite preview",
+    "start": "node prod-server.js",
     "start-server": "node server.js",
     "test": "vitest",
     "lint": "eslint src/ --ext js",

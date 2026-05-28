@@ -100,26 +100,26 @@ if (treeCountSelect) {
     let amount = 0;
     /* eslint-disable indent */
     switch (treeCount) {
-    case 1:
-      amount = 25;
-      break;
-    case 5:
-      amount = 100;
-      break;
-    case 10:
-      amount = 200;
-      break;
-    case 25:
-      amount = 500;
-      break;
-    case 50:
-      amount = 1000;
-      break;
-    case 100:
-      amount = 2000;
-      break;
-    default:
-      amount = 0;
+      case 1:
+        amount = 25;
+        break;
+      case 5:
+        amount = 100;
+        break;
+      case 10:
+        amount = 200;
+        break;
+      case 25:
+        amount = 500;
+        break;
+      case 50:
+        amount = 1000;
+        break;
+      case 100:
+        amount = 2000;
+        break;
+      default:
+        amount = 0;
     }
     /* eslint-enable indent */
     const totalAmount = document.getElementById('total-amount');
