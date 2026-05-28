@@ -63,7 +63,16 @@ export default defineConfig({
           try {
             if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
               const content = fs.readFileSync(filePath, 'utf-8');
-              res.setHeader('Content-Type', 'text/html; charset=utf-8');
+              const ext = path.extname(filePath);
+              
+              if (ext === '.html') {
+                res.setHeader('Content-Type', 'text/html; charset=utf-8');
+              } else if (ext === '.css') {
+                res.setHeader('Content-Type', 'text/css; charset=utf-8');
+              } else if (ext === '.js') {
+                res.setHeader('Content-Type', 'application/javascript');
+              }
+              
               res.setHeader('Cache-Control', 'no-cache');
               res.end(content);
               return;
