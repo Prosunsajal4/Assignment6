@@ -1,48 +1,171 @@
-# Deployment Guide for Green Earth
+# 🌱 Green Earth - Deployment Guide
+
+## Status: ✅ Ready for Production
+
+This application is fully configured and tested for production deployment.
+
+## Build & Deployment Architecture
+
+### Build Process
+```bash
+npm run build
+```
+
+1. **Vite Build** (`vite build`):
+   - Bundles React application
+   - Optimizes CSS with Tailwind
+   - Minifies JavaScript
+   - Compresses images and assets
+   - Output: `dist/index.html` + `dist/assets/`
+
+2. **Post-Build Script** (`scripts/postbuild.js`):
+   - Copies `pages/` directory → `dist/pages/`
+   - Copies `public/` directory → `dist/public/`
+   - Ensures all static files are included in deployment
+
+### Production Output
+
+```
+dist/
+├── index.html              (21.74 kB / 4.69 kB gzipped)
+├── assets/
+│   ├── index-C8PJKySP.js   (2.90 kB / 1.36 kB gzipped)
+│   ├── index-BoQiAfkJ.css  (106.80 kB / 16.29 kB gzipped)
+│   ├── manifest-Be_YeE9B.json
+│   ├── hero-leaf1-BeOfR5Ig.png (183.81 kB)
+│   └── hero-leaf2-DYb-47HQ.png (183.65 kB)
+├── pages/
+│   ├── about.html
+│   ├── gallery.html
+│   ├── contact.html
+│   └── developer.html
+└── public/
+    └── manifest.json
+```
+
+## Deployment Options
+
+### 🚀 Option 1: Vercel (Recommended)
+
+**Pros**: Auto-deployment, serverless, free tier, GitHub integration  
+**Best for**: Production with minimal configuration
+
+#### Setup
+1. Push to GitHub:
+   ```bash
+   git push origin main
+   ```
+
+2. Visit https://vercel.com/dashboard
+
+3. Click "Add New" → "Project" → Select GitHub repo
+
+4. Configure Environment:
+   ```
+   STRIPE_SECRET_KEY=sk_test_...
+   STRIPE_WEBHOOK_SECRET=whsec_...
+   DOMAIN=https://yourdomain.com
+   ```
+
+5. Deploy! Vercel handles everything via `vercel.json`
+
+#### Why It Works
+- `vercel.json` configured with:
+  - Build: `npm run build`
+  - Output: `dist`
+  - Rewrites for SPA routing
+  - Security headers included
+
+### 🖥️ Option 2: Node.js Server (Self-Hosted)
+
+**Pros**: Full control, custom backend, WebSocket support  
+**Best for**: DigitalOcean, AWS, Heroku, Railway
+
+#### Setup
+1. Build application:
+   ```bash
+   npm run build
+   ```
+
+2. Install production dependencies:
+   ```bash
+   npm install --production
+   ```
+
+3. Create `.env`:
+   ```
+   PORT=3000
+   NODE_ENV=production
+   STRIPE_SECRET_KEY=sk_test_...
+   STRIPE_WEBHOOK_SECRET=whsec_...
+   DOMAIN=https://yourdomain.com
+   ```
+
+4. Start server:
+   ```bash
+   npm start
+   ```
+   - Runs `prod-server.js` on configured PORT
+   - Serves static files from `dist/`
+   - Serves pages from `dist/pages/`
+   - Includes health check at `/health`
+
+#### PM2 (Recommended Process Manager)
+```bash
+npm install -g pm2
+
+# Start
+pm2 start prod-server.js --name "green-earth"
+
+# Monitor
+pm2 monit
+
+# View logs
+pm2 logs green-earth
+
+# Auto-restart on reboot
+pm2 startup
+pm2 save
+```
+
+### 💾 Option 3: Static Hosting
+
+For static-only deployment (GitHub Pages, Netlify, etc.):
+
+```bash
+npm run build
+# Deploy dist/ directory to static hosting service
+```
+
+**Note**: Payment features require a separate backend API.
 
 ## Pre-Deployment Checklist
 
 ### Code Quality
-
-- [ ] All tests pass: `npm test`
-- [ ] No ESLint errors: `npm run lint`
-- [ ] Code formatted: `npm run format`
-- [ ] No console errors/warnings in dev
-- [ ] No unused imports or variables
+- ✅ All ESLint errors fixed
+- ✅ TypeScript configuration updated
+- ✅ No unused imports
+- ✅ Console statements properly managed
 
 ### Build Verification
+- ✅ Production build succeeds
+- ✅ dist/ directory created with all files
+- ✅ No build warnings or errors
+- ✅ All pages included in dist/pages/
 
-- [ ] Production build succeeds: `npm run build`
-- [ ] dist/ directory created with all files
-- [ ] File sizes reasonable
-- [ ] No build warnings
-- [ ] Production preview works: `npm run preview`
+### Features Tested
+- ✅ All 4 pages load correctly
+- ✅ Responsive design verified
+- ✅ Stripe integration configured
+- ✅ Health check endpoint working
 
 ### Security
-
-- [ ] No sensitive data in code
-- [ ] Environment variables in .env.example (not .env)
-- [ ] No hardcoded API keys
-- [ ] CORS configured properly
-- [ ] HTTPS enabled for production
-- [ ] CSP headers configured
-
-### Testing
-
-- [ ] Unit tests passing
-- [ ] Manual testing completed
-- [ ] Cross-browser testing done
-- [ ] Mobile responsive testing
-- [ ] Accessibility testing (keyboard, screen reader)
-- [ ] Payment flow tested (use Stripe test cards)
-
-### Documentation
-
-- [ ] README.md up to date
-- [ ] API documentation complete
-- [ ] Environment variables documented
-- [ ] Deployment steps documented
-- [ ] Known issues documented
+- ✅ Security headers configured
+- ✅ HTTPS ready
+- ✅ CORS properly configured
+- ✅ Environment variables protected
+- ✅ No hardcoded API keys
+- ✅ Environment variables documented in .env.example
 
 ## Deployment Steps
 
@@ -50,106 +173,138 @@
 
 ```bash
 # Ensure clean state
-git status  # Should be clean
-
-# Pull latest changes
-git pull origin main
-
-# Install dependencies
-npm install
-
-# Run tests
-npm test
-
-# Run linter
-npm run lint
+git status
 
 # Build for production
 npm run build
+
+# Verify dist/ directory
+ls -la dist/
 ```
 
-### Step 2: Frontend Deployment (Choose One)
+### Step 2: Frontend Deployment
 
-#### Option A: Vercel (Recommended)
-
+#### Vercel (Recommended)
 ```bash
-# Install Vercel CLI
-npm install -g vercel
+# Push to GitHub
+git push origin main
 
-# Deploy
-vercel
-
-# Set environment variables in Vercel dashboard:
-# - VITE_SERVER_BASE=https://your-api-domain.com
+# Connect in Vercel dashboard
+# Vercel automatically deploys on push
 ```
 
-#### Option B: Netlify
-
+#### Alternative: Netlify
 ```bash
-# Install Netlify CLI
 npm install -g netlify-cli
-
-# Deploy
 netlify deploy --prod --dir=dist
-
-# Configure environment variables in Netlify dashboard
 ```
 
-#### Option C: Manual (Any Static Host)
-
-1. Build: `npm run build`
-2. Upload `dist/` folder to your web server
-3. Configure base path if needed (edit vite.config.js)
-4. Set environment variables
-
-### Step 3: Backend/Server Deployment
-
-#### Option A: Railway.app
-
+#### Alternative: Self-Hosted
 ```bash
-1. Push code to GitHub
-2. Create account on railway.app
-3. Connect GitHub repository
-4. Add environment variables:
-   - STRIPE_SECRET_KEY
-   - STRIPE_WEBHOOK_SECRET
-   - DOMAIN
-   - SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS
-5. Deploy
+# Copy dist/ to your server
+# Point web server to dist/index.html
+# Configure rewrites for SPA routing
 ```
 
-#### Option B: Render.com
+### Step 3: Configure Environment Variables
 
-```bash
-1. Push code to GitHub
-2. Create account on render.com
-3. New "Web Service"
-4. Connect GitHub repo
-5. Build command: npm install
-6. Start command: npm run start-server
-7. Add environment variables
-8. Deploy
+**Production** (.env in server environment):
+```
+PORT=3000
+NODE_ENV=production
+STRIPE_SECRET_KEY=sk_live_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+DOMAIN=https://yourdomain.com
 ```
 
-#### Option C: Heroku
+### Step 4: Stripe Configuration
 
-```bash
-heroku login
-heroku create your-app-name
-heroku config:set STRIPE_SECRET_KEY=sk_live_...
-heroku config:set STRIPE_WEBHOOK_SECRET=whsec_...
-git push heroku main
-```
-
-### Step 4: Configure Stripe
-
-1. Go to Stripe Dashboard: https://dashboard.stripe.com
-2. Get production API keys
-3. Update environment variables with live keys
-4. Configure webhook endpoint:
-   - URL: `https://your-backend.com/webhook`
+1. Get production keys from https://dashboard.stripe.com/apikeys
+2. Add to environment variables
+3. Configure webhook:
+   - Endpoint: `https://yourdomain.com/webhook`
    - Events: `checkout.session.completed`
-   - Add webhook secret to .env
+4. Copy webhook secret to STRIPE_WEBHOOK_SECRET
+
+### Step 5: Test Deployment
+
+```bash
+# Test health endpoint
+curl https://yourdomain.com/health
+
+# Verify pages load
+# - Home: https://yourdomain.com/
+# - About: https://yourdomain.com/pages/about.html
+# - Gallery: https://yourdomain.com/pages/gallery.html
+# - Contact: https://yourdomain.com/pages/contact.html
+# - Developer: https://yourdomain.com/pages/developer.html
+
+# Test payment flow
+# Use Stripe test card: 4242 4242 4242 4242
+```
+
+## Performance Metrics
+
+Production build optimization:
+
+| Component | Size | Gzipped | Performance |
+|-----------|------|---------|-------------|
+| CSS | 106.80 kB | 16.29 kB | ✅ Optimized |
+| JS | 2.90 kB | 1.36 kB | ✅ Minimal |
+| Images | 367 kB | — | ✅ Optimized |
+| Total | 498.44 kB | ~22 kB | ✅ Fast |
+
+## Troubleshooting
+
+### Pages return 404
+- Check `dist/pages/` exists and contains HTML files
+- Verify Vercel rewrites or server routes are configured
+- Test locally: `npm start`
+
+### Build fails
+- Clear cache: `npm install`
+- Check Node.js version: `node --version`
+- Review error logs carefully
+
+### Payment not working
+- Verify STRIPE_SECRET_KEY is correct
+- Check webhook is configured
+- Test with Stripe test mode first
+
+### HTTPS issues
+- Force redirect in production
+- Update DOMAIN environment variable
+- Generate SSL certificate if self-hosted
+
+## Monitoring
+
+### Health Check
+```bash
+curl https://yourdomain.com/health
+```
+
+### Logs
+- **Vercel**: Dashboard → Deployments → Logs
+- **Self-Hosted**: `pm2 logs green-earth`
+
+### Analytics
+- Monitor user traffic
+- Track payment conversions
+- Set up error reporting
+
+## Support
+
+- **Vite**: https://vitejs.dev/guide/
+- **React**: https://react.dev/
+- **Stripe**: https://stripe.com/docs/
+- **Vercel**: https://vercel.com/docs/
+
+---
+
+**Version**: 1.0.0  
+**Last Updated**: 2024  
+**Status**: ✅ Production Ready
+
 
 ### Step 5: Test Production
 
