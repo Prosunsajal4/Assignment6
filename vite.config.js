@@ -72,6 +72,7 @@ export default defineConfig({
           const filePath = path.join(__dirname, req.url);
           try {
             if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+              console.log(`[Vite] Serving page: ${req.url}`);
               const content = fs.readFileSync(filePath, 'utf-8');
               const ext = path.extname(filePath);
               
@@ -88,7 +89,7 @@ export default defineConfig({
               return;
             }
           } catch (err) {
-            console.error(`Error serving page ${req.url}:`, err.message);
+            console.error(`[Vite] Error serving page ${req.url}:`, err.message);
           }
         }
         
@@ -116,7 +117,7 @@ export default defineConfig({
               return;
             }
           } catch (err) {
-            console.error(`Error serving asset ${req.url}:`, err.message);
+            console.error(`[Vite] Error serving asset ${req.url}:`, err.message);
           }
         }
         
@@ -140,7 +141,7 @@ export default defineConfig({
               return;
             }
           } catch (err) {
-            console.error(`Error serving public file ${req.url}:`, err.message);
+            console.error(`[Vite] Error serving public file ${req.url}:`, err.message);
           }
         }
         
