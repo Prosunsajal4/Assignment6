@@ -6,12 +6,12 @@ import path from 'path';
 
 /**
  * Vite Configuration for Green Earth Project
- * 
+ *
  * This config includes custom middleware to serve:
  * - HTML pages from /pages directory
- * - Static assets from /assets directory  
+ * - Static assets from /assets directory
  * - Public files from /public directory
- * 
+ *
  * This solves the issue where gallery and other pages were not being served.
  */
 export default defineConfig({
@@ -75,7 +75,7 @@ export default defineConfig({
               console.log(`[Vite] Serving page: ${req.url}`);
               const content = fs.readFileSync(filePath, 'utf-8');
               const ext = path.extname(filePath);
-              
+
               if (ext === '.html') {
                 res.setHeader('Content-Type', 'text/html; charset=utf-8');
               } else if (ext === '.css') {
@@ -83,7 +83,7 @@ export default defineConfig({
               } else if (ext === '.js') {
                 res.setHeader('Content-Type', 'application/javascript');
               }
-              
+
               res.setHeader('Cache-Control', 'no-cache');
               res.end(content);
               return;
@@ -92,7 +92,7 @@ export default defineConfig({
             console.error(`[Vite] Error serving page ${req.url}:`, err.message);
           }
         }
-        
+
         // Serve assets from /assets directory
         if (req.url.startsWith('/assets/')) {
           const filePath = path.join(__dirname, req.url);
@@ -100,7 +100,7 @@ export default defineConfig({
             if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
               const content = fs.readFileSync(filePath);
               const ext = path.extname(filePath).toLowerCase();
-              
+
               const contentTypes = {
                 '.png': 'image/png',
                 '.jpg': 'image/jpeg',
@@ -110,7 +110,7 @@ export default defineConfig({
                 '.webp': 'image/webp',
                 '.ico': 'image/x-icon',
               };
-              
+
               const contentType = contentTypes[ext] || 'application/octet-stream';
               res.setHeader('Content-Type', contentType);
               res.end(content);
@@ -120,7 +120,7 @@ export default defineConfig({
             console.error(`[Vite] Error serving asset ${req.url}:`, err.message);
           }
         }
-        
+
         // Serve public files from /public directory
         if (req.url.startsWith('/public/')) {
           const filePath = path.join(__dirname, req.url);
@@ -128,13 +128,13 @@ export default defineConfig({
             if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
               const content = fs.readFileSync(filePath);
               const ext = path.extname(filePath).toLowerCase();
-              
+
               const contentTypes = {
                 '.json': 'application/json',
                 '.xml': 'application/xml',
                 '.pdf': 'application/pdf',
               };
-              
+
               const contentType = contentTypes[ext] || 'application/octet-stream';
               res.setHeader('Content-Type', contentType);
               res.end(content);
@@ -144,7 +144,7 @@ export default defineConfig({
             console.error(`[Vite] Error serving public file ${req.url}:`, err.message);
           }
         }
-        
+
         next();
       },
     ],

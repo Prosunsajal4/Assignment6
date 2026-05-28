@@ -1,19 +1,28 @@
 import './theme.css';
 
 // Verify routes are accessible (for debugging)
+// eslint-disable-next-line no-console
 if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
   // Check if pages are loading correctly
-  const pages = ['/pages/about.html', '/pages/gallery.html', '/pages/contact.html', '/pages/developer.html'];
-  pages.forEach(page => {
+  const pages = [
+    '/pages/about.html',
+    '/pages/gallery.html',
+    '/pages/contact.html',
+    '/pages/developer.html',
+  ];
+  pages.forEach((page) => {
     fetch(page, { method: 'HEAD' })
-      .then(res => {
+      .then((res) => {
         if (res.ok) {
+          // eslint-disable-next-line no-console
           console.log(`✓ Page accessible: ${page}`);
         } else {
+          // eslint-disable-next-line no-console
           console.warn(`✗ Page not accessible: ${page} (${res.status})`);
         }
       })
-      .catch(err => console.warn(`✗ Failed to verify ${page}: ${err.message}`));
+      // eslint-disable-next-line no-console
+      .catch((err) => console.warn(`✗ Failed to verify ${page}: ${err.message}`));
   });
 }
 
@@ -35,9 +44,7 @@ if (donationForm) {
     e.preventDefault();
 
     // Client-side validation
-    const requiredFields = donationForm.querySelectorAll(
-      'input[required], select[required]'
-    );
+    const requiredFields = donationForm.querySelectorAll('input[required], select[required]');
     let isValid = true;
     requiredFields.forEach((field) => {
       if (!field.value || !field.value.toString().trim()) {
@@ -56,8 +63,7 @@ if (donationForm) {
     const totalAmountInput = document.getElementById('total-amount');
     let amountCents = 0;
     if (totalAmountInput && totalAmountInput.value) {
-      const numeric =
-        parseFloat(totalAmountInput.value.replace(/[^0-9.]/g, '')) || 0;
+      const numeric = parseFloat(totalAmountInput.value.replace(/[^0-9.]/g, '')) || 0;
       amountCents = Math.round(numeric * 100);
     }
     if (!amountCents || amountCents <= 0) {
@@ -92,28 +98,30 @@ if (treeCountSelect) {
   treeCountSelect.addEventListener('change', function () {
     const treeCount = parseInt(this.value, 10);
     let amount = 0;
+    /* eslint-disable indent */
     switch (treeCount) {
-      case 1:
-        amount = 25;
-        break;
-      case 5:
-        amount = 100;
-        break;
-      case 10:
-        amount = 200;
-        break;
-      case 25:
-        amount = 500;
-        break;
-      case 50:
-        amount = 1000;
-        break;
-      case 100:
-        amount = 2000;
-        break;
-      default:
-        amount = 0;
+    case 1:
+      amount = 25;
+      break;
+    case 5:
+      amount = 100;
+      break;
+    case 10:
+      amount = 200;
+      break;
+    case 25:
+      amount = 500;
+      break;
+    case 50:
+      amount = 1000;
+      break;
+    case 100:
+      amount = 2000;
+      break;
+    default:
+      amount = 0;
     }
+    /* eslint-enable indent */
     const totalAmount = document.getElementById('total-amount');
     if (totalAmount) totalAmount.value = amount > 0 ? `$${amount}` : '';
   });

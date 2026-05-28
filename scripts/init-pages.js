@@ -1,6 +1,6 @@
 /**
  * Page Server Initialization Script
- * 
+ *
  * Use this script to verify all pages are accessible and working correctly
  * Run: node scripts/init-pages.js
  */
@@ -18,14 +18,9 @@ const projectRoot = path.join(__dirname, '..');
  */
 async function verifyPagesDirectory() {
   console.log('\n📁 Verifying Pages Directory...');
-  
+
   const pagesDir = path.join(projectRoot, 'pages');
-  const requiredPages = [
-    'about.html',
-    'gallery.html',
-    'contact.html',
-    'developer.html',
-  ];
+  const requiredPages = ['about.html', 'gallery.html', 'contact.html', 'developer.html'];
 
   if (!fs.existsSync(pagesDir)) {
     console.error('✗ Pages directory not found at:', pagesDir);
@@ -54,9 +49,9 @@ async function verifyPagesDirectory() {
  */
 async function verifyAssetsDirectory() {
   console.log('\n🎨 Verifying Assets Directory...');
-  
+
   const assetsDir = path.join(projectRoot, 'assets');
-  
+
   if (!fs.existsSync(assetsDir)) {
     console.error('✗ Assets directory not found at:', assetsDir);
     return false;
@@ -66,7 +61,7 @@ async function verifyAssetsDirectory() {
 
   const files = fs.readdirSync(assetsDir);
   console.log(`  Found ${files.length} asset files`);
-  
+
   return true;
 }
 
@@ -75,9 +70,9 @@ async function verifyAssetsDirectory() {
  */
 async function verifyPublicDirectory() {
   console.log('\n📋 Verifying Public Directory...');
-  
+
   const publicDir = path.join(projectRoot, 'public');
-  
+
   if (!fs.existsSync(publicDir)) {
     console.error('✗ Public directory not found at:', publicDir);
     return false;
@@ -102,16 +97,16 @@ async function verifyPublicDirectory() {
  */
 async function verifyViteConfig() {
   console.log('\n⚙️  Verifying Vite Configuration...');
-  
+
   const viteConfigPath = path.join(projectRoot, 'vite.config.js');
-  
+
   if (!fs.existsSync(viteConfigPath)) {
     console.error('✗ vite.config.js not found');
     return false;
   }
 
   const content = fs.readFileSync(viteConfigPath, 'utf-8');
-  
+
   const checks = [
     { name: 'Pages middleware', pattern: '/pages/' },
     { name: 'Assets middleware', pattern: '/assets/' },
@@ -137,7 +132,7 @@ async function verifyViteConfig() {
  */
 async function verifyUtilityModules() {
   console.log('\n📦 Verifying Utility Modules...');
-  
+
   const srcDir = path.join(projectRoot, 'src');
   const modules = [
     'server-utils.js',
@@ -196,10 +191,10 @@ async function initialize() {
   console.log('📊 Initialization Summary');
   console.log('═══════════════════════════════════════════════');
 
-  const passed = results.filter(r => r.passed).length;
+  const passed = results.filter((r) => r.passed).length;
   const total = results.length;
 
-  results.forEach(result => {
+  results.forEach((result) => {
     const status = result.passed ? '✓' : '✗';
     console.log(`${status} ${result.name}`);
   });
@@ -218,7 +213,7 @@ async function initialize() {
 }
 
 // Run initialization
-initialize().catch(err => {
+initialize().catch((err) => {
   console.error('Fatal error:', err);
   process.exit(1);
 });

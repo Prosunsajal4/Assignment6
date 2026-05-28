@@ -1,6 +1,6 @@
 /**
  * Server Health Check Utility
- * 
+ *
  * Utilities for checking server status and page accessibility
  */
 
@@ -47,15 +47,13 @@ export async function checkServerHealth(url, timeout = 5000) {
  * @returns {Promise<Object>} Health check results for all pages
  */
 export async function checkPagesHealth(pageUrls) {
-  const results = await Promise.all(
-    pageUrls.map(url => checkServerHealth(url))
-  );
+  const results = await Promise.all(pageUrls.map((url) => checkServerHealth(url)));
 
   const summary = {
     timestamp: new Date().toISOString(),
     total: results.length,
-    healthy: results.filter(r => r.healthy).length,
-    unhealthy: results.filter(r => !r.healthy).length,
+    healthy: results.filter((r) => r.healthy).length,
+    unhealthy: results.filter((r) => !r.healthy).length,
     results: results,
   };
 
@@ -99,7 +97,7 @@ export function logHealthSummary(summary) {
   console.log(`  Unhealthy: ${summary.unhealthy}`);
   console.log(`  Timestamp: ${summary.timestamp}`);
 
-  summary.results.forEach(result => {
+  summary.results.forEach((result) => {
     const status = result.healthy ? '✓' : '✗';
     const info = result.healthy
       ? `${status} ${result.url} (${result.status})`
@@ -126,11 +124,7 @@ export async function areAllPagesAccessible(pageUrls) {
  * @param {number} initialDelay - Initial delay in milliseconds
  * @returns {Promise<Object>} Health check result after retries
  */
-export async function checkHealthWithRetry(
-  url,
-  maxRetries = 3,
-  initialDelay = 1000
-) {
+export async function checkHealthWithRetry(url, maxRetries = 3, initialDelay = 1000) {
   let lastError;
 
   for (let attempt = 0; attempt < maxRetries; attempt++) {
@@ -144,8 +138,10 @@ export async function checkHealthWithRetry(
 
     if (attempt < maxRetries - 1) {
       const delay = initialDelay * Math.pow(2, attempt);
-      console.log(`[Health Check] Retrying in ${delay}ms... (Attempt ${attempt + 1}/${maxRetries})`);
-      await new Promise(resolve => setTimeout(resolve, delay));
+      console.log(
+        `[Health Check] Retrying in ${delay}ms... (Attempt ${attempt + 1}/${maxRetries})`
+      );
+      await new Promise((resolve) => setTimeout(resolve, delay));
     }
   }
 
@@ -159,11 +155,7 @@ export async function checkHealthWithRetry(
  * @param {number} duration - Total monitoring duration in milliseconds
  * @returns {Promise<Array>} Array of health check results
  */
-export async function monitorServerHealth(
-  url,
-  interval = 5000,
-  duration = 60000
-) {
+export async function monitorServerHealth(url, interval = 5000, duration = 60000) {
   const results = [];
   const startTime = Date.now();
 
@@ -177,7 +169,7 @@ export async function monitorServerHealth(
     const remaining = duration - elapsed;
 
     if (remaining > 0) {
-      await new Promise(resolve => setTimeout(resolve, Math.min(interval, remaining)));
+      await new Promise((resolve) => setTimeout(resolve, Math.min(interval, remaining)));
     }
   }
 

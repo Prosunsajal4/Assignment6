@@ -1,18 +1,18 @@
 /**
  * Routing Tests
- * 
+ *
  * Tests to verify that all pages are accessible and routing works correctly
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
-import { 
-  ROUTES, 
-  getAllRoutes, 
-  isValidRoute, 
+import {
+  ROUTES,
+  getAllRoutes,
+  isValidRoute,
   getRouteLabel,
   createBreadcrumbs,
   getNextRoute,
-  getPreviousRoute 
+  getPreviousRoute,
 } from './routing';
 
 describe('Routing Module', () => {
@@ -116,7 +116,7 @@ describe('Page Accessibility', () => {
   ];
 
   describe('Page Serving', () => {
-    pages.forEach(page => {
+    pages.forEach((page) => {
       it(`should serve ${page}`, async () => {
         try {
           const response = await fetch(page, { method: 'HEAD' });

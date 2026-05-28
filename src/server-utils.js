@@ -1,6 +1,6 @@
 /**
  * Server Routing Utilities
- * 
+ *
  * Helper functions for serving static files and handling routes
  */
 
@@ -14,18 +14,18 @@ export const MIME_TYPES = {
   // HTML
   '.html': 'text/html; charset=utf-8',
   '.htm': 'text/html; charset=utf-8',
-  
+
   // CSS
   '.css': 'text/css; charset=utf-8',
-  
+
   // JavaScript
   '.js': 'application/javascript',
   '.mjs': 'application/javascript',
   '.cjs': 'application/javascript',
-  
+
   // JSON
   '.json': 'application/json',
-  
+
   // Images
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
@@ -36,14 +36,14 @@ export const MIME_TYPES = {
   '.ico': 'image/x-icon',
   '.bmp': 'image/bmp',
   '.tiff': 'image/tiff',
-  
+
   // Fonts
   '.woff': 'font/woff',
   '.woff2': 'font/woff2',
   '.ttf': 'font/ttf',
   '.otf': 'font/otf',
   '.eot': 'application/vnd.ms-fontobject',
-  
+
   // Other
   '.pdf': 'application/pdf',
   '.xml': 'application/xml',
@@ -101,11 +101,11 @@ export function serveFile(filePath, res) {
 
     const content = readFileContent(filePath, null);
     const mimeType = getMimeType(filePath);
-    
+
     res.setHeader('Content-Type', mimeType);
     res.setHeader('Cache-Control', 'no-cache');
     res.end(content);
-    
+
     return true;
   } catch (err) {
     console.error(`Error serving file ${filePath}:`, err.message);
@@ -123,9 +123,9 @@ export function listPages(pagesDir) {
     if (!fs.existsSync(pagesDir)) {
       return [];
     }
-    
+
     const files = fs.readdirSync(pagesDir);
-    return files.filter(file => file.endsWith('.html'));
+    return files.filter((file) => file.endsWith('.html'));
   } catch (err) {
     console.error(`Error listing pages:`, err.message);
     return [];

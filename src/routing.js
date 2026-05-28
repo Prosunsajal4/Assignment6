@@ -1,6 +1,6 @@
 /**
  * Routing Helper Module
- * 
+ *
  * Utilities for managing routes and navigation in the Green Earth project
  */
 
@@ -57,7 +57,7 @@ export function isValidRoute(url) {
  * @returns {Object|null} The nav item or null
  */
 export function getNavItemByUrl(url) {
-  return NAV_MENU.find(item => item.url === url) || null;
+  return NAV_MENU.find((item) => item.url === url) || null;
 }
 
 /**
@@ -77,14 +77,14 @@ export function getRouteLabel(url) {
  */
 export function createBreadcrumbs(currentUrl) {
   const breadcrumbs = [{ label: 'Home', url: ROUTES.HOME }];
-  
+
   if (currentUrl !== ROUTES.HOME) {
     const item = getNavItemByUrl(currentUrl);
     if (item) {
       breadcrumbs.push(item);
     }
   }
-  
+
   return breadcrumbs;
 }
 
@@ -94,7 +94,7 @@ export function createBreadcrumbs(currentUrl) {
  * @returns {Object|null} The next nav item or null
  */
 export function getNextRoute(currentUrl) {
-  const currentIndex = NAV_MENU.findIndex(item => item.url === currentUrl);
+  const currentIndex = NAV_MENU.findIndex((item) => item.url === currentUrl);
   if (currentIndex === -1 || currentIndex === NAV_MENU.length - 1) {
     return null;
   }
@@ -107,7 +107,7 @@ export function getNextRoute(currentUrl) {
  * @returns {Object|null} The previous nav item or null
  */
 export function getPreviousRoute(currentUrl) {
-  const currentIndex = NAV_MENU.findIndex(item => item.url === currentUrl);
+  const currentIndex = NAV_MENU.findIndex((item) => item.url === currentUrl);
   if (currentIndex <= 0) {
     return null;
   }
@@ -130,10 +130,10 @@ export function logRoutes() {
  * @returns {boolean} True if all routes are valid
  */
 export function verifyRoutes() {
-  const allValid = getAllRoutes().every(route => {
+  const allValid = getAllRoutes().every((route) => {
     return typeof route === 'string' && route.length > 0;
   });
-  
+
   console.log(`[Routing] All routes valid: ${allValid ? '✓' : '✗'}`);
   return allValid;
 }

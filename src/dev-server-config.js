@@ -1,6 +1,6 @@
 /**
  * Development Server Configuration
- * 
+ *
  * Centralized configuration for the Vite development server middleware
  * that handles serving pages, assets, and public files
  */
@@ -16,7 +16,7 @@ const CONTENT_TYPES = {
   css: 'text/css; charset=utf-8',
   js: 'application/javascript',
   json: 'application/json',
-  
+
   // Images
   png: 'image/png',
   jpg: 'image/jpeg',
@@ -25,7 +25,7 @@ const CONTENT_TYPES = {
   svg: 'image/svg+xml',
   webp: 'image/webp',
   ico: 'image/x-icon',
-  
+
   // Other
   pdf: 'application/pdf',
   xml: 'application/xml',
@@ -51,13 +51,13 @@ export const pagesMiddleware = {
   handler: (req, res, next) => {
     if (req.url.startsWith('/pages/')) {
       const filePath = path.join(process.cwd(), req.url);
-      
+
       try {
         if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
           console.log(`[Server] Serving page: ${req.url}`);
           const content = fs.readFileSync(filePath, 'utf-8');
           const ext = path.extname(filePath);
-          
+
           res.setHeader('Content-Type', getContentType(ext));
           res.setHeader('Cache-Control', 'no-cache');
           res.end(content);
@@ -67,7 +67,7 @@ export const pagesMiddleware = {
         console.error(`[Server] Error serving page ${req.url}:`, err.message);
       }
     }
-    
+
     next();
   },
 };
@@ -82,12 +82,12 @@ export const assetsMiddleware = {
   handler: (req, res, next) => {
     if (req.url.startsWith('/assets/')) {
       const filePath = path.join(process.cwd(), req.url);
-      
+
       try {
         if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
           const content = fs.readFileSync(filePath);
           const ext = path.extname(filePath);
-          
+
           res.setHeader('Content-Type', getContentType(ext));
           res.end(content);
           return;
@@ -96,7 +96,7 @@ export const assetsMiddleware = {
         console.error(`[Server] Error serving asset ${req.url}:`, err.message);
       }
     }
-    
+
     next();
   },
 };
@@ -111,12 +111,12 @@ export const publicMiddleware = {
   handler: (req, res, next) => {
     if (req.url.startsWith('/public/')) {
       const filePath = path.join(process.cwd(), req.url);
-      
+
       try {
         if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
           const content = fs.readFileSync(filePath);
           const ext = path.extname(filePath);
-          
+
           res.setHeader('Content-Type', getContentType(ext));
           res.end(content);
           return;
@@ -125,7 +125,7 @@ export const publicMiddleware = {
         console.error(`[Server] Error serving public file ${req.url}:`, err.message);
       }
     }
-    
+
     next();
   },
 };
@@ -133,18 +133,14 @@ export const publicMiddleware = {
 /**
  * All middleware configurations
  */
-export const allMiddlewares = [
-  pagesMiddleware,
-  assetsMiddleware,
-  publicMiddleware,
-];
+export const allMiddlewares = [pagesMiddleware, assetsMiddleware, publicMiddleware];
 
 /**
  * Create middleware handlers from configuration
  * @returns {Array} Array of middleware handler functions
  */
 export function createMiddlewares() {
-  return allMiddlewares.map(config => config.handler);
+  return allMiddlewares.map((config) => config.handler);
 }
 
 /**
@@ -153,7 +149,7 @@ export function createMiddlewares() {
  */
 export function getMiddlewareSummary() {
   console.log('\n[Server] Registered Middlewares:');
-  allMiddlewares.forEach(config => {
+  allMiddlewares.forEach((config) => {
     console.log(`  ✓ ${config.name} - ${config.description}`);
     console.log(`    Path: ${config.path}`);
   });

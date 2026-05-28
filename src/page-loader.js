@@ -1,6 +1,6 @@
 /**
  * Page Loader Module
- * 
+ *
  * Provides utilities for dynamically loading and managing page content
  */
 
@@ -12,18 +12,18 @@
 export async function loadPage(pageUrl) {
   try {
     const response = await fetch(pageUrl);
-    
+
     if (!response.ok) {
       throw new Error(`Failed to load page: ${response.status} ${response.statusText}`);
     }
-    
+
     const html = await response.text();
     return { success: true, html, status: response.status };
   } catch (error) {
-    return { 
-      success: false, 
+    return {
+      success: false,
       error: error.message,
-      html: null
+      html: null,
     };
   }
 }
@@ -34,9 +34,12 @@ export async function loadPage(pageUrl) {
  * @returns {boolean} True if URL is valid
  */
 export function isValidPageUrl(url) {
-  return typeof url === 'string' && 
-         (url.startsWith('/pages/') || url === '/') &&
-         url.endsWith('.html') || url === '/';
+  return (
+    (typeof url === 'string' &&
+      (url.startsWith('/pages/') || url === '/') &&
+      url.endsWith('.html')) ||
+    url === '/'
+  );
 }
 
 /**
@@ -103,7 +106,7 @@ export async function preloadPages(pageUrls) {
       }
     })
   );
-  
+
   return results;
 }
 
@@ -137,19 +140,19 @@ export async function getPageStatus(pageUrl) {
  */
 export async function verifyPages(pageUrls) {
   const statuses = await Promise.all(pageUrls.map(getPageStatus));
-  
+
   const summary = {
     total: statuses.length,
-    accessible: statuses.filter(s => s.accessible).length,
-    failed: statuses.filter(s => !s.accessible).length,
+    accessible: statuses.filter((s) => s.accessible).length,
+    failed: statuses.filter((s) => !s.accessible).length,
     statuses: statuses,
   };
-  
+
   console.log(`[PageLoader] Page Verification:
     Total: ${summary.total}
     Accessible: ${summary.accessible}
     Failed: ${summary.failed}
   `);
-  
+
   return summary;
 }
