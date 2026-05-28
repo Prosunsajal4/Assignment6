@@ -1,5 +1,22 @@
 import './theme.css';
 
+// Verify routes are accessible (for debugging)
+if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+  // Check if pages are loading correctly
+  const pages = ['/pages/about.html', '/pages/gallery.html', '/pages/contact.html', '/pages/developer.html'];
+  pages.forEach(page => {
+    fetch(page, { method: 'HEAD' })
+      .then(res => {
+        if (res.ok) {
+          console.log(`✓ Page accessible: ${page}`);
+        } else {
+          console.warn(`✗ Page not accessible: ${page} (${res.status})`);
+        }
+      })
+      .catch(err => console.warn(`✗ Failed to verify ${page}: ${err.message}`));
+  });
+}
+
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener('click', function (e) {
