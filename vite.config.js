@@ -4,6 +4,16 @@ import { resolve } from 'path';
 import fs from 'fs';
 import path from 'path';
 
+/**
+ * Vite Configuration for Green Earth Project
+ * 
+ * This config includes custom middleware to serve:
+ * - HTML pages from /pages directory
+ * - Static assets from /assets directory  
+ * - Public files from /public directory
+ * 
+ * This solves the issue where gallery and other pages were not being served.
+ */
 export default defineConfig({
   plugins: [react()],
   base: '/',
