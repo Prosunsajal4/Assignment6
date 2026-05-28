@@ -110,6 +110,30 @@ export default defineConfig({
           }
         }
         
+        // Serve public files from /public directory
+        if (req.url.startsWith('/public/')) {
+          const filePath = path.join(__dirname, req.url);
+          try {
+            if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+              const content = fs.readFileSync(filePath);
+              const ext = path.extname(filePath).toLowerCase();
+              
+              const contentTypes = {
+                '.json': 'application/json',
+                '.xml': 'application/xml',
+                '.pdf': 'application/pdf',
+              };
+              
+              const contentType = contentTypes[ext] || 'application/octet-stream';
+              res.setHeader('Content-Type', contentType);
+              res.end(content);
+              return;
+            }
+          } catch (err) {
+            console.error(`Error serving public file ${req.url}:`, err.message);
+          }
+        }
+        
         next();
       },
     ],
