@@ -81,6 +81,35 @@ export default defineConfig({
             console.error(`Error serving page ${req.url}:`, err.message);
           }
         }
+        
+        // Serve assets from /assets directory
+        if (req.url.startsWith('/assets/')) {
+          const filePath = path.join(__dirname, req.url);
+          try {
+            if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+              const content = fs.readFileSync(filePath);
+              const ext = path.extname(filePath).toLowerCase();
+              
+              const contentTypes = {
+                '.png': 'image/png',
+                '.jpg': 'image/jpeg',
+                '.jpeg': 'image/jpeg',
+                '.gif': 'image/gif',
+                '.svg': 'image/svg+xml',
+                '.webp': 'image/webp',
+                '.ico': 'image/x-icon',
+              };
+              
+              const contentType = contentTypes[ext] || 'application/octet-stream';
+              res.setHeader('Content-Type', contentType);
+              res.end(content);
+              return;
+            }
+          } catch (err) {
+            console.error(`Error serving asset ${req.url}:`, err.message);
+          }
+        }
+        
         next();
       },
     ],
