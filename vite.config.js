@@ -60,11 +60,16 @@ export default defineConfig({
         // Serve HTML pages from /pages directory
         if (req.url.startsWith('/pages/')) {
           const filePath = path.join(__dirname, req.url);
-          if (fs.existsSync(filePath)) {
-            const content = fs.readFileSync(filePath, 'utf-8');
-            res.setHeader('Content-Type', 'text/html; charset=utf-8');
-            res.end(content);
-            return;
+          try {
+            if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+              const content = fs.readFileSync(filePath, 'utf-8');
+              res.setHeader('Content-Type', 'text/html; charset=utf-8');
+              res.setHeader('Cache-Control', 'no-cache');
+              res.end(content);
+              return;
+            }
+          } catch (err) {
+            console.error(`Error serving page ${req.url}:`, err.message);
           }
         }
         next();
