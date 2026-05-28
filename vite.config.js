@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
+import fs from 'fs';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
@@ -53,6 +55,21 @@ export default defineConfig({
       overlay: true,
       protocol: 'ws',
     },
+    middlewares: [
+      (req, res, next) => {
+        // Serve HTML pages from /pages directory
+        if (req.url.startsWith('/pages/')) {
+          const filePath = path.join(__dirname, req.url);
+          if (fs.existsSync(filePath)) {
+            const content = fs.readFileSync(filePath, 'utf-8');
+            res.setHeader('Content-Type', 'text/html; charset=utf-8');
+            res.end(content);
+            return;
+          }
+        }
+        next();
+      },
+    ],
   },
   preview: {
     port: 3000,
