@@ -1,6 +1,6 @@
 /**
  * Production Server Configuration
- * 
+ *
  * Express server for serving the built application
  * Handles static files, pages directory, and API routes
  */
@@ -25,14 +25,14 @@ app.use(express.static('dist'));
 // Serve pages from /pages directory
 app.get('/pages/:page', (req, res) => {
   const page = req.params.page;
-  
+
   // Security: only allow .html files
   if (!page.endsWith('.html')) {
     return res.status(403).send('Forbidden');
   }
 
   const filePath = path.join(__dirname, 'dist', 'pages', page);
-  
+
   if (fs.existsSync(filePath)) {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Cache-Control', 'public, max-age=3600');
@@ -46,7 +46,7 @@ app.get('/pages/:page', (req, res) => {
 app.get('/public/:file', (req, res) => {
   const file = req.params.file;
   const filePath = path.join(__dirname, 'dist', 'public', file);
-  
+
   if (fs.existsSync(filePath)) {
     const ext = path.extname(file);
     const contentTypes = {
@@ -54,7 +54,7 @@ app.get('/public/:file', (req, res) => {
       '.xml': 'application/xml',
       '.pdf': 'application/pdf',
     };
-    
+
     const contentType = contentTypes[ext] || 'application/octet-stream';
     res.setHeader('Content-Type', contentType);
     res.setHeader('Cache-Control', 'public, max-age=86400');

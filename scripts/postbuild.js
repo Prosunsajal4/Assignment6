@@ -1,6 +1,6 @@
 /**
  * Post-Build Script
- * 
+ *
  * Copies necessary files to dist directory after Vite build
  */
 
@@ -21,11 +21,11 @@ function copyDirectory(src, dest) {
   }
 
   const files = fs.readdirSync(src);
-  
-  files.forEach(file => {
+
+  files.forEach((file) => {
     const srcFile = path.join(src, file);
     const destFile = path.join(dest, file);
-    
+
     if (fs.statSync(srcFile).isDirectory()) {
       copyDirectory(srcFile, destFile);
     } else {
@@ -45,7 +45,7 @@ async function postBuild() {
     // Copy pages directory
     const pagesDir = path.join(projectRoot, 'pages');
     const distPagesDir = path.join(projectRoot, 'dist', 'pages');
-    
+
     if (fs.existsSync(pagesDir)) {
       console.log('📄 Copying pages directory...');
       copyDirectory(pagesDir, distPagesDir);
@@ -57,7 +57,7 @@ async function postBuild() {
     // Copy public files (if any additional public files needed)
     const publicDir = path.join(projectRoot, 'public');
     const distPublicDir = path.join(projectRoot, 'dist', 'public');
-    
+
     if (fs.existsSync(publicDir)) {
       console.log('📋 Copying public directory...');
       copyDirectory(publicDir, distPublicDir);
